@@ -52,7 +52,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">CS 120</h4>
                                     <p class="card-text">Professor: John Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
+                                    <a href="CS120.php" class="btn btn-primary stretched-link">See class</a>
                                 </div>
                             </div>
                         </div>

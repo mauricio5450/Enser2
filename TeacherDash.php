@@ -53,7 +53,8 @@
                                 <div class="card-body">
                                     <h4 class="card-title">CS 240</h4>
                                     <p class="card-text">Professor: Jane Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
+                                    <a href="#" class="btn btn-primary">See class</a>
+                                    <a href="#" class="btn btn-danger">Delete</a>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +65,8 @@
                                 <div class="card-body">
                                     <h4 class="card-title">ECE 320</h4>
                                     <p class="card-text">Professor: Jane Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
+                                    <a href="#" class="btn btn-primary">See class</a>
+                                    <a href="#" class="btn btn-danger">Delete</a>
                                 </div>
                             </div>
                         </div>

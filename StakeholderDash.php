@@ -53,7 +53,8 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Teachers Aid</h4>
                                     <p class="card-text">Stakeholder: University of Idaho</p>
-                                    <a href="#" class="btn btn-primary stretched-link">Contact</a>
+                                    <a href="#" class="btn btn-primary">Contact</a>
+                                    <a href="#" class="btn btn-danger">Delete</a>
                                 </div>
                             </div>
                         </div>
