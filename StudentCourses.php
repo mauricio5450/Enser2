@@ -35,7 +35,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Student Dashboard</h2>
+                <h2>Available Course</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -43,60 +43,64 @@
         <div>
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                            <img class="card-img-top" src="images/csclass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">CS 120</h4>
-                                    <p class="card-text">Professor: John Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="images/csclass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">CS 240</h4>
-                                    <p class="card-text">Professor: Jane Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div></div>
+            <table class="table" class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Description</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>State</th>
+                        <th>City/Town</th>
+                        <th>Sex</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>CS 120</td>
+                    <td>This is the fundamental basics to Computer Science</td>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                    <td>Montana</td>
+                    <td>Helena</td>
+                    <td>Male</td>
+                </tr>
+                <tr>
+                    <td>CS 240</td>
+                    <td>This is the more advanced Computer Science class</td>
+                    <td>Jane</td>
+                    <td>Doe</td>
+                    <td>Jane@example.com</td>
+                    <td>Idaho</td>
+                    <td>Boise</td>
+                    <td>Female</td>
+                </tr>
+                <tr>
+                    <td>ECE 320</td>
+                    <td>This is the upper division ECE class</td>
+                    <td>Jane</td>
+                    <td>Doe</td>
+                    <td>Jane@example.com</td>
+                    <td>Idaho</td>
+                    <td>Boise</td>
+                    <td>Female</td>
+                </tr>
                 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                            <img class="card-img-top" src="images/mathclass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">Math 270</h4>
-                                    <p class="card-text">Professor: John Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
+                <tr>
+                    <td>Math 270</td>
+                    <td>This is the harder math class</td>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                    <td>Montana</td>
+                    <td>Helena</td>
+                    <td>Male</td>
+                </tr>
 
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="images/ececlass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">ECE 320</h4>
-                                    <p class="card-text">Professor: Jane Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </tbody>
+            </table>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">

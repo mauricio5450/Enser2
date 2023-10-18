@@ -37,7 +37,7 @@
             <h1>Login</h1>
             <input type="text" class="login-input" name="username" placeholder="Username" required/>
             <input type="password" class="login-input" name = "password" placeholder="Password">
-            <input type="submit" name="submit" value="Register" class="login-button">
+            <input type="submit" name="submit" value="Login" class="login-button">
         </form>
     </body>
 </html>

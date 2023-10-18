@@ -35,7 +35,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Student Dashboard</h2>
+                <h2>Student's Instructors</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -43,60 +43,28 @@
         <div>
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
+            <table class="table" class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                </tr>
+                <tr>
+                    <td>Jane</td>
+                    <td>Doe</td>
+                    <td>Jane@example.com</td>
+                </tr>
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                            <img class="card-img-top" src="images/csclass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">CS 120</h4>
-                                    <p class="card-text">Professor: John Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="images/csclass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">CS 240</h4>
-                                    <p class="card-text">Professor: Jane Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div></div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                            <img class="card-img-top" src="images/mathclass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">Math 270</h4>
-                                    <p class="card-text">Professor: John Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="images/ececlass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">ECE 320</h4>
-                                    <p class="card-text">Professor: Jane Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </tbody>
+            </table>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">

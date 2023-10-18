@@ -11,7 +11,7 @@
         <nav class="navbar navbar-expand-sm navbar">
             <div class="container-xxl">
               <!-- Logo -->
-                <a class="navbar-brand" href="TeacherDash.php">
+                <a class="navbar-brand" href=" ">
                     <img src="images/enser logo.png" alt="Logo" style="width: 50px" style="height: 50px">
                 </a>
                 <h1 class="brand-text">nser</h1>
@@ -35,47 +35,47 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Create class</h2>
+                <h2>Projects</h2>
             </div>
         </div>
 <!--The end of the navbar-->
 <!--This is the beggining of the sidebar-->
-        <div>
         <!--Things to the right of the navbar--> 
             <div class="content-to-right">
-                <form action="/action_page.php">
-
-                    <div class="form-group">
-                        <label>Course Name:</label>
-                        <input class="form-control custom-input">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Course Description:</label>
-                        <input class="form-control custom-input">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Location:</label>
-                        <input class="form-control custom-input">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Course Description:</label>
-                        <input class="form-control custom-input">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Skills Learned:</label>
-                        <input class="form-control custom-input">
-                    </div>
-
-                    <button type="submit" class="btn btn-default custom-button">Submit</button>
-                </form>
+            <table class="table" class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Shareholder</th>
+                        <th>Email</th>
+                        <th>Skills to learn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Teachers Aid</td>
+                    <td>University of Idaho</td>
+                    <td>Uidahohelp@vandals.uidaho.edu</td>
+                    <td>Experience classroom rush, Understading of mathimatics</td>
+                </tr>
+                <tr>
+                    <td>Construct Server</td>
+                    <td>Techo</td>
+                    <td>TechoHelp@techo.com</td>
+                    <td>Computer knowledge, Experience with large systems</td>
+                </tr>
+                <tr>
+                    <td>Build Website</td>
+                    <td>Locally</td>
+                    <td>Localhelp@locally.com</td>
+                    <td>HTML, CSS, JAVA SCRIPT</td>
+                </tr>
+                </tbody>
+            </table>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="TeacherStudents.php">
+                <a href="TeacherDash.php">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
@@ -87,19 +87,19 @@
                     </span>
                     <p>Students</p> 
                 </a>
-                <a href="#">
+                <a href="TeacherCourses.php">
                     <span class="material-symbols-outlined">
                         school
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="#">
+                <a href="TeacherProject.php">
                     <span class="material-symbols-outlined">
                         deployed_code
                     </span>
                     <p>Projects</p> 
                 </a>
-                <a href="#">
+                <a href="TeacherStakeholders.php">
                     <span class="material-symbols-outlined">
                         volunteer_activism
                     </span>

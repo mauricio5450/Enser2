@@ -43,64 +43,28 @@
         <div>
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
-
+            <button type="button" class="btn btn-primary btn-block custom-butt"><a href="CreateProject.php" class="Butt-Cust">Create Project</a></button>
                 <div class="container">
                     <div class="row">
+
                         <div class="col-sm-6">
                             <div class="card" style="width:400px">
-                            <img class="card-img-top" src="images/csclass.jpg" alt="Card image">
+                                <img class="card-img-top" src="images/Classroom.jpg" alt="Card image">
                                 <div class="card-body">
-                                    <h4 class="card-title">CS 120</h4>
-                                    <p class="card-text">Professor: John Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
+                                    <h4 class="card-title">Teachers Aid</h4>
+                                    <p class="card-text">Stakeholder: University of Idaho</p>
+                                    <a href="#" class="btn btn-primary stretched-link">Contact</a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="images/csclass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">CS 240</h4>
-                                    <p class="card-text">Professor: Jane Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
-                <div></div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                            <img class="card-img-top" src="images/mathclass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">Math 270</h4>
-                                    <p class="card-text">Professor: John Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="images/ececlass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">ECE 320</h4>
-                                    <p class="card-text">Professor: Jane Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="#">
+                <a href="StakeholderDash.php">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
@@ -120,12 +84,6 @@
                 </a>
                 <a href="#">
                     <span class="material-symbols-outlined">
-                        inventory
-                    </span>
-                    <p>Current Courses</p> 
-                </a>
-                <a href="#">
-                    <span class="material-symbols-outlined">
                         deployed_code
                     </span>
                     <p>Projects</p> 
@@ -141,12 +99,6 @@
                         volunteer_activism
                     </span>
                     <p>Stakeholders</p> 
-                </a>
-                <a href="#">
-                    <span class="material-symbols-outlined">
-                        history
-                    </span>
-                    <p>Past Courses</p> 
                 </a>
 <!-- TEMP TAKEOUT
                 <a href="#">

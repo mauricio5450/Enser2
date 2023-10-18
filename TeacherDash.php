@@ -28,7 +28,7 @@
                             <span class="material-symbols-outlined">
                             logout
                         </span>-->
-                        <a class="nav-link" href="index2.html">SIGN OUT</a>
+                        <a class="nav-link" href="Login.php">SIGN OUT</a>
                   </ul>
               </div>
             </div>
@@ -79,19 +79,19 @@
                     </span>
                     <p>Dashboard</p>
                 </a>
-                <a href="#">
+                <a href="TeacherStudents.php">
                     <span class="material-symbols-outlined">
                         person
                     </span>
                     <p>Students</p> 
                 </a>
-                <a href="#">
+                <a href="TeacherCourses.php">
                     <span class="material-symbols-outlined">
                         school
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="#">
+                <a href="TeacherProject.php">
                     <span class="material-symbols-outlined">
                         deployed_code
                     </span>
