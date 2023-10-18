@@ -43,8 +43,28 @@
         <div>
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
-                <h1>Course Description</h1>
-                <p>This class looks at the basics of computer science and what to look forward to in this field of study.</p>
+            <table class="table" class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Assignment</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Assignment #1</td>
+                    <td>89%</td>
+                </tr>
+                <tr>
+                    <td>Quiz #1</td>
+                    <td>78%</td>
+                </tr>
+                <tr>
+                    <td>Test #1</td>
+                    <td>91%</td>
+                </tr>
+                </tbody>
+            </table>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
@@ -61,19 +81,19 @@
                     </span>
                     <p>Assignment</p> 
                 </a>
-                <a href="#">
+                <a href="StudentCourses.php">
                     <span class="material-symbols-outlined">
                         quiz
                     </span>
                     <p>Quiz</p> 
                 </a>
-                <a href="#">
+                <a href="StudentInstructors.php">
                     <span class="material-symbols-outlined">
                         lab_profile
                     </span>
                         <p>Test</p> 
                 </a>
-                <a href="GradeCs120.php">
+                <a href="StudentPast.php">
                     <span class="material-symbols-outlined">
                         abc
                     </span>
