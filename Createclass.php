@@ -87,19 +87,19 @@
                     </span>
                     <p>Students</p> 
                 </a>
-                <a href="#">
+                <a href="TeacherCourses.php">
                     <span class="material-symbols-outlined">
                         school
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="#">
+                <a href="TeacherProject.php">
                     <span class="material-symbols-outlined">
                         deployed_code
                     </span>
                     <p>Projects</p> 
                 </a>
-                <a href="#">
+                <a href="TeacherStakeholders.php">
                     <span class="material-symbols-outlined">
                         volunteer_activism
                     </span>

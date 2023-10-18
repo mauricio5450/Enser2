@@ -35,7 +35,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Dashboard</h2>
+                <h2>Stakeholder's Dashboard</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -70,31 +70,31 @@
                     </span>
                     <p>Dashboard</p>
                 </a>
-                <a href="#">
+                <a href="StakeholderStudents.php">
                     <span class="material-symbols-outlined">
                         person
                     </span>
                     <p>Students</p> 
                 </a>
-                <a href="#">
+                <a href="StakeholderCourses.php/">
                     <span class="material-symbols-outlined">
                         school
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="#">
+                <a href="StakeholderProject.php">
                     <span class="material-symbols-outlined">
                         deployed_code
                     </span>
                     <p>Projects</p> 
                 </a>
-                <a href="#">
+                <a href="StakeholderInstructors.php">
                     <span class="material-symbols-outlined">
                         design_services
                     </span>
                         <p>Instructors</p> 
                 </a>
-                <a href="#">
+                <a href="StakeholderStake.php">
                     <span class="material-symbols-outlined">
                         volunteer_activism
                     </span>

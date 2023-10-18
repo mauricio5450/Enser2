@@ -35,7 +35,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Instructors</h2>
+                <h2>Courses Available</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -44,24 +44,60 @@
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
 
-                <table class="table" class="custom-table">
+            <table class="table" class="custom-table">
                 <thead>
                     <tr>
+                        <th>Course</th>
+                        <th>Description</th>
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Email</th>
+                        <th>State</th>
+                        <th>City/Town</th>
+                        <th>Sex</th>
                     </tr>
                 </thead>
                 <tbody>
                 <tr>
+                    <td>CS 120</td>
+                    <td>This is the fundamental basics to Computer Science</td>
                     <td>John</td>
                     <td>Doe</td>
                     <td>john@example.com</td>
+                    <td>Montana</td>
+                    <td>Helena</td>
+                    <td>Male</td>
                 </tr>
                 <tr>
+                    <td>CS 240</td>
+                    <td>This is the more advanced Computer Science class</td>
                     <td>Jane</td>
                     <td>Doe</td>
                     <td>Jane@example.com</td>
+                    <td>Idaho</td>
+                    <td>Boise</td>
+                    <td>Female</td>
+                </tr>
+                <tr>
+                    <td>ECE 320</td>
+                    <td>This is the upper division ECE class</td>
+                    <td>Jane</td>
+                    <td>Doe</td>
+                    <td>Jane@example.com</td>
+                    <td>Idaho</td>
+                    <td>Boise</td>
+                    <td>Female</td>
+                </tr>
+                
+                <tr>
+                    <td>Math 270</td>
+                    <td>This is the harder math class</td>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                    <td>Montana</td>
+                    <td>Helena</td>
+                    <td>Male</td>
                 </tr>
 
                 </tbody>

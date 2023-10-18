@@ -35,7 +35,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Instructors</h2>
+                <h2>Stakeholers</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -43,27 +43,27 @@
         <div>
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
-
-                <table class="table" class="custom-table">
+            
+            <table class="table" class="custom-table">
                 <thead>
                     <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
+                        <th>Shareholder</th>
                         <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
+                    <td>University of Idaho</td>
+                    <td>Uidahohelp@vandals.uidaho.edu</td>
                 </tr>
                 <tr>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>Jane@example.com</td>
+                    <td>Techo</td>
+                    <td>TechoHelp@techo.com</td>
                 </tr>
-
+                <tr>
+                    <td>Locally</td>
+                    <td>Localhelp@locally.com</td>
+                </tr>
                 </tbody>
             </table>
 

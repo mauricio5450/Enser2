@@ -35,7 +35,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Instructors</h2>
+                <h2>Students</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -44,12 +44,16 @@
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
 
-                <table class="table" class="custom-table">
+            <table class="table" class="custom-table">
                 <thead>
                     <tr>
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Email</th>
+                        <th>State</th>
+                        <th>City/Town</th>
+                        <th>Sex</th>
+                        <th>Major(Optional)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,13 +61,29 @@
                     <td>John</td>
                     <td>Doe</td>
                     <td>john@example.com</td>
+                    <td>Montana</td>
+                    <td>Helena</td>
+                    <td>Male</td>
+                    <td>Mechanical Engineer</td>
                 </tr>
                 <tr>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>Jane@example.com</td>
+                    <td>Mary</td>
+                    <td>Moe</td>
+                    <td>mary@example.com</td>
+                    <td>Idaho</td>
+                    <td>Boise</td>
+                    <td>Female</td>
+                    <td>Electrical Engineer</td>
                 </tr>
-
+                <tr>
+                    <td>July</td>
+                    <td>Dooley</td>
+                    <td>july@example.com</td>
+                    <td>Pennsylvania </td>
+                    <td>Gettysburg</td>
+                    <td>Female</td>
+                    <td>NULL</td>
+                </tr>
                 </tbody>
             </table>
 
