@@ -4,15 +4,15 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-        <link href="css/style.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
     </head>
     <body>
 <!--The beginning of the navbar-->
         <nav class="navbar navbar-expand-sm navbar">
             <div class="container-xxl">
               <!-- Logo -->
-                <a class="navbar-brand" href=" ">
-                    <img src="images/enser logo.png" alt="Logo" style="width: 50px" style="height: 50px">
+                <a class="navbar-brand" href="TeacherDash.php">
+                    <img src="../images/enser logo.png" alt="Logo" style="width: 50px" style="height: 50px">
                 </a>
                 <h1 class="brand-text">nser</h1>
               <!--End of logo-->
@@ -28,87 +28,78 @@
                             <span class="material-symbols-outlined">
                             logout
                         </span>-->
-                        <a class="nav-link" href="Login.php">SIGN OUT</a>
+                        <a class="nav-link" href="../Login.php">SIGN OUT</a>
                   </ul>
               </div>
             </div>
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Project</h2>
+                <h2>Teacher Dashboard</h2>
             </div>
         </div>
 <!--The end of the navbar-->
 <!--This is the beggining of the sidebar-->
         <div>
-        <!--Things to the right of the navbar-->
+        <!--Things to the right of the navbar--> 
             <div class="content-to-right">
+                <button type="button" class="btn btn-primary btn-block custom-butt"><a href="Createclass.php" class="Butt-Cust">Create Class</a></button>
+                <div class="container">
+                    <div class="row">
 
-            <table class="table" class="custom-table">
-                <thead>
-                    <tr>
-                        <th>Project</th>
-                        <th>Shareholder</th>
-                        <th>Email</th>
-                        <th>Skills to learn</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Teachers Aid</td>
-                    <td>University of Idaho</td>
-                    <td>Uidahohelp@vandals.uidaho.edu</td>
-                    <td>Experience classroom rush, Understading of mathimatics</td>
-                </tr>
-                <tr>
-                    <td>Construct Server</td>
-                    <td>Techo</td>
-                    <td>TechoHelp@techo.com</td>
-                    <td>Computer knowledge, Experience with large systems</td>
-                </tr>
-                <tr>
-                    <td>Build Website</td>
-                    <td>Locally</td>
-                    <td>Localhelp@locally.com</td>
-                    <td>HTML, CSS, JAVA SCRIPT</td>
-                </tr>
-                </tbody>
-            </table>
+                        <div class="col-sm-6">
+                            <div class="card" style="width:400px">
+                                <img class="card-img-top" src="../images/csclass.jpg" alt="Card image">
+                                <div class="card-body">
+                                    <h4 class="card-title">CS 240</h4>
+                                    <p class="card-text">Professor: Jane Doe</p>
+                                    <a href="#" class="btn btn-primary">See class</a>
+                                    <a href="#" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col-sm-6">
+                            <div class="card" style="width:400px">
+                                <img class="card-img-top" src="../images/ececlass.jpg" alt="Card image">
+                                <div class="card-body">
+                                    <h4 class="card-title">ECE 320</h4>
+                                    <p class="card-text">Professor: Jane Doe</p>
+                                    <a href="#" class="btn btn-primary">See class</a>
+                                    <a href="#" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="StakeholderDash.php">
+                <a href="TeacherDash.php">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
                     <p>Dashboard</p>
                 </a>
-                <a href="StakeholderStudents.php">
+                <a href="TeacherStudents.php">
                     <span class="material-symbols-outlined">
                         person
                     </span>
                     <p>Students</p> 
                 </a>
-                <a href="StakeholderCourses.php">
+                <a href="TeacherCourses.php">
                     <span class="material-symbols-outlined">
                         school
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="StakeholderProject.php">
+                <a href="TeacherProject.php">
                     <span class="material-symbols-outlined">
                         deployed_code
                     </span>
                     <p>Projects</p> 
                 </a>
-                <a href="StakeholderInstructors.php">
-                    <span class="material-symbols-outlined">
-                        design_services
-                    </span>
-                        <p>Instructors</p> 
-                </a>
-                <a href="StakeholderStake.php">
+                <a href="#">
                     <span class="material-symbols-outlined">
                         volunteer_activism
                     </span>
