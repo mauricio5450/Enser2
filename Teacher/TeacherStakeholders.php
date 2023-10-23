@@ -91,7 +91,7 @@
                     </span>
                     <p>Projects</p> 
                 </a>
-                <a href="TeacherStakeholders.php">
+                <a href="TeacherStakeholders.php" class="active">
                     <span class="material-symbols-outlined">
                         volunteer_activism
                     </span>

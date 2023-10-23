@@ -118,7 +118,7 @@
                     </span>
                     <p>Students</p> 
                 </a>
-                <a href="StakeholderCourses.php">
+                <a href="StakeholderCourses.php" class="active">
                     <span class="material-symbols-outlined">
                         school
                     </span>

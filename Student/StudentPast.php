@@ -118,7 +118,7 @@
                     </span>
                         <p>Instructors</p> 
                 </a>
-                <a href="StudentPast.php">
+                <a href="StudentPast.php" class="active">
                     <span class="material-symbols-outlined">
                         history
                     </span>

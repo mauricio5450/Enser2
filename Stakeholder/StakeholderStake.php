@@ -100,7 +100,7 @@
                     </span>
                         <p>Instructors</p> 
                 </a>
-                <a href="StakeholderStake.php">
+                <a href="StakeholderStake.php" class="active">
                     <span class="material-symbols-outlined">
                         volunteer_activism
                     </span>

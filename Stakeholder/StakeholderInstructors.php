@@ -94,7 +94,7 @@
                     </span>
                     <p>Projects</p> 
                 </a>
-                <a href="StakeholderInstructors.php">
+                <a href="StakeholderInstructors.php" class="active">
                     <span class="material-symbols-outlined">
                         design_services
                     </span>

@@ -86,7 +86,7 @@
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="StudentInstructors.php">
+                <a href="StudentInstructors.php" class="active">
                     <span class="material-symbols-outlined">
                         design_services
                     </span>

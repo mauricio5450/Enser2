@@ -93,7 +93,7 @@
                     </span>
                     <p>Dashboard</p>
                 </a>
-                <a href="TeacherStudents.php">
+                <a href="TeacherStudents.php" class="active">
                     <span class="material-symbols-outlined">
                         person
                     </span>

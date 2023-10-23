@@ -75,7 +75,7 @@
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="TeacherDash.php">
+                <a href="TeacherDash.php" class="active">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>

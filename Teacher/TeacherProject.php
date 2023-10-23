@@ -93,7 +93,7 @@
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="TeacherProject.php">
+                <a href="TeacherProject.php" class="active">
                     <span class="material-symbols-outlined">
                         deployed_code
                     </span>

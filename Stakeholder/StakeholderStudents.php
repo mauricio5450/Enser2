@@ -96,7 +96,7 @@
                     </span>
                     <p>Dashboard</p>
                 </a>
-                <a href="StakeholderStudents.php">
+                <a href="StakeholderStudents.php" class="active">
                     <span class="material-symbols-outlined">
                         person
                     </span>

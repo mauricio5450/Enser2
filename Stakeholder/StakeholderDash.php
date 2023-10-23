@@ -65,7 +65,7 @@
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="StakeholderDash.php">
+                <a href="StakeholderDash.php" class="active">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>

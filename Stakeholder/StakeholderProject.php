@@ -96,7 +96,7 @@
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="StakeholderProject.php">
+                <a href="StakeholderProject.php" class="active">
                     <span class="material-symbols-outlined">
                         deployed_code
                     </span>
