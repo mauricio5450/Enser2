@@ -1,3 +1,22 @@
+<?php
+    require_once ('../connection.php');
+    
+    if(isset($_POST["submit"])){
+        $coursename = $_POST["course_name"];
+        $coursedesc = $_POST["course_desc"];
+        $courseinst = $_POST["course_Inst"];
+        $courselocation = $_POST["course_location"];
+        $courseskills = $_POST["course_skills"];
+        
+        
+        $upload_dir = "../images/";
+        echo $upload_dir.$_FILES["course_img"]["name"];
+        echo $upload_file = $upload_dir.basename($_FILE["course_img"]["name"]);
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,42 +62,37 @@
         <div>
         <!--Things to the right of the navbar--> 
             <div class="content-to-right">
-                <form action="/action_page.php">
+                <form action="Createclass.php" method="POST">
 
                     <div class="form-group">
                         <label>Course Name:</label>
-                        <input class="form-control custom-input">
+                        <input name="course_name" class="form-control custom-input">
                     </div>
 
                     <div class="form-group">
                         <label>Course Description:</label>
-                        <input class="form-control custom-input">
+                        <input name="course_desc" class="form-control custom-input">
                     </div>
 
                     <div class="form-group">
                         <label>Location:</label>
-                        <input class="form-control custom-input">
+                        <input name="course_location" class="form-control custom-input">
                     </div>
 
                     <div class="form-group">
                         <label>Instructor:</label>
-                        <input class="form-control custom-input">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Course Description:</label>
-                        <input class="form-control custom-input">
+                        <input name="course_Inst" class="form-control custom-input">
                     </div>
 
                     <div class="form-group">
                         <label>Skills Learned:</label>
-                        <input class="form-control custom-input">
+                        <input name="course_skills" class="form-control custom-input">
                     </div>
                     <div class="form-group">
                         <label>Select image to upload as a class picture: </label>
-                        <input type="file" name="image"/>
+                        <input name="course_img" type="file" name="image"/>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <input type="submit" name = "submit" class="btn btn-primary">
                 </form>
             </div>
         <!--The end of the things to the right nabar-->
