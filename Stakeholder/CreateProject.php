@@ -34,8 +34,8 @@
             </div>
         </nav>
         <div class="row">
-            <div class="col-sm-4 text-left p-4">
-                <h2>Create Project</h2>
+            <div class="col-sm-4 text-right p-4">
+                <h2 class="movin">Create Project</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -71,7 +71,12 @@
                         <input class="form-control custom-input">
                     </div>
 
-                    <button type="submit" class="btn btn-default custom-button">Submit</button>
+                    <div class="form-group">
+                        <label>Select image to upload as a class picture: </label>
+                        <input type="file" name="image"/>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 
             </div>

@@ -35,7 +35,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Create class</h2>
+                <h2>Create Class</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -61,6 +61,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Instructor:</label>
+                        <input class="form-control custom-input">
+                    </div>
+
+                    <div class="form-group">
                         <label>Course Description:</label>
                         <input class="form-control custom-input">
                     </div>
@@ -69,13 +74,16 @@
                         <label>Skills Learned:</label>
                         <input class="form-control custom-input">
                     </div>
-
-                    <button type="submit" class="btn btn-default custom-button">Submit</button>
+                    <div class="form-group">
+                        <label>Select image to upload as a class picture: </label>
+                        <input type="file" name="image"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="TeacherStudents.php">
+                <a href="TeacherDash.php">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
