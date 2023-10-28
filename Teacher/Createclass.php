@@ -9,9 +9,42 @@
         $courseskills = $_POST["course_skills"];
         
         
-        $upload_dir = "../images/";
-        echo $upload_dir.$_FILES["course_img"]["name"];
-        echo $upload_file = $upload_dir.basename($_FILE["course_img"]["name"]);
+        $upload_dir = "classimg/";
+        $classimg = $upload_dir.$_FILES["image"]["name"];
+        $upload_dir.$_FILES["image"]["name"];
+        $upload_file = $upload_dir.basename($_FILES["image"]["name"]);
+        $imagetype = strtolower(pathinfo($upload_file, PATHINFO_EXTENSION));
+        $check = $_FILES["image"]["size"];
+        $upload_ok = 0;
+        if(file_exists($upload_file)){
+            echo "<script>alert('The File already exists')</script>";
+            $upload_ok = 0;
+        }else{
+            $upload_ok = 1;
+            if($check !== false){
+                $upload_ok = 1;
+                if($imagetype == 'jpg'||$imagetype == 'png'||$imagetype == 'jpeg'){
+                    $upload_ok = 1;
+                }else{
+                    echo'<script>alert("Please change the image format")</script>';
+                }
+            }else{
+                echo '<script>alert("The phot size is 0 please change the photo")</script>';
+                $upload_ok = 0;
+            }
+        }
+        if($upload_ok == 0){
+            echo'<script>alert("Sorry your file is not uploaded please try again!")</script>';
+        }else{
+            if($coursename!=""&&$coursedesc!=""&&$courseinst!=""&&$courselocation!=""&&$courseskills!=""){
+                move_uploaded_file($_FILES["image"]["tmp_name"],$upload_file);
+                $sql = "INSERT INTO classes(course_name,course_desc,Location,Instructor,skills_learned,course_image) 
+                VALUES('$coursename','$coursedesc','$courseinst','$courselocation','$courseskills','$classimg')";
+                if($conn->query($sql)==TRUE){
+                    echo "<script>alert('your image uploaded succesfully')</script>";
+                }
+            }
+        }
     }
 
 ?>
@@ -62,7 +95,7 @@
         <div>
         <!--Things to the right of the navbar--> 
             <div class="content-to-right">
-                <form action="Createclass.php" method="POST">
+                <form action="Createclass.php" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label>Course Name:</label>
@@ -90,7 +123,7 @@
                     </div>
                     <div class="form-group">
                         <label>Select image to upload as a class picture: </label>
-                        <input name="course_img" type="file" name="image"/>
+                        <input type="file" name="image"/>
                     </div>
                     <input type="submit" name = "submit" class="btn btn-primary">
                 </form>
@@ -127,16 +160,6 @@
                     </span>
                     <p>Stakeholders</p> 
                 </a>
-<!-- TEMP TAKEOUT
-                <a href="#">
-                    <span class="material-symbols-outlined">
-                        logout
-                    </span>
-                    <p>Logout</p> 
-                </a>
-            </div>
--->
-
         </div>
         <!--This is the end of the sidebar--> 
            
