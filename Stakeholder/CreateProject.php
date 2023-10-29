@@ -1,3 +1,63 @@
+
+<?php
+    require_once ('../connection.php');
+    
+    if(isset($_POST["submit"])){
+        $projectname = $_POST["pname"];
+        $projectdesc = $_POST["pdesc"];
+        $projectstakeholder = $_POST["pstakeholder"];
+        $projectloc = $_POST["ploc"];
+        $projectskills = $_POST["pskills"];
+        
+        
+        $upload_dir = "projectimg/";
+        $projimg = $upload_dir.$_FILES["image"]["name"];
+        $upload_dir.$_FILES["image"]["name"];
+        $upload_file = $upload_dir.basename($_FILES["image"]["name"]);
+        $imagetype = strtolower(pathinfo($upload_file, PATHINFO_EXTENSION));
+        $check = $_FILES["image"]["size"];
+        $upload_ok = 0;
+
+        if(file_exists($upload_file)){
+            $upload_ok = 2;
+        }else{
+            $upload_ok = 1;
+            if($check !== false){
+                $upload_ok = 1;
+                if($imagetype == 'jpg'||$imagetype == 'png'||$imagetype == 'jpeg'){
+                    $upload_ok = 1;
+                }else{
+                    echo'<script>alert("Please change the image format")</script>';
+                }
+            }else{
+                echo '<script>alert("The phot size is 0 please change the photo")</script>';
+                $upload_ok = 0;
+            }
+        }
+        if($upload_ok == 0){
+            echo'<script>alert("Sorry your file is not uploaded please try again!")</script>';
+        }else if($upload_ok==2){
+            if($projectname!=""&&$projectdesc!=""&&$projectstakeholder!=""&&$projectskills!=""&&$projectloc!=""){
+                $sql = "INSERT INTO projects(project_name,project_desc,project_loc,project_stakeholder,project_skills,project_img) 
+                VALUES('$projectname','$projectdesc','$projectloc','$projectstakeholder','$projectskills','$projimg')";
+                if($conn->query($sql)==TRUE){
+                    echo "<script>alert('your image uploaded succesfully')</script>";
+                }
+            }
+        }else{
+            if($projectname!=""&&$projectdesc!=""&&$projectstakeholder!=""&&$projectskills!=""&&$projectloc!=""){
+                move_uploaded_file($_FILES["image"]["tmp_name"],$upload_file);
+                $sql = "INSERT INTO projects(project_name,project_desc,project_loc,project_stakeholder,project_skills,project_img) 
+                VALUES('$projectname','$projectdesc','$projectloc','$projectstakeholder','$projectskills','$projimg')";
+                if($conn->query($sql)==TRUE){
+                    echo "<script>alert('your image uploaded succesfully')</script>";
+                }
+            }
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,31 +104,31 @@
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
 
-            <form action="/action_page.php">
+            <form action="CreateProject.php" method="POST" enctype="multipart/form-data">
 
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label>Project Name:</label>
-                        <input class="form-control custom-input">
+                        <input name="pname" class="form-control custom-input">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label>Project Description:</label>
-                        <input class="form-control custom-input">
+                        <input name="pdesc" class="form-control custom-input">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label>Location:</label>
-                        <input class="form-control custom-input">
+                        <input name="ploc" class="form-control custom-input">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label>Stakeholder:</label>
-                        <input class="form-control custom-input">
+                        <input name="pstakeholder" class="form-control custom-input">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label>Skills Learned:</label>
-                        <input class="form-control custom-input">
+                        <input name="pskills" class="form-control custom-input">
                     </div>
 
                     <div class="form-group">
@@ -76,7 +136,7 @@
                         <input type="file" name="image"/>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <input type="submit" class="btn btn-primary" name="submit">
                 </form>
 
             </div>
@@ -88,31 +148,31 @@
                     </span>
                     <p>Dashboard</p>
                 </a>
-                <a href="#">
+                <a href="StakeholderStudents.php">
                     <span class="material-symbols-outlined">
                         person
                     </span>
                     <p>Students</p> 
                 </a>
-                <a href="#">
+                <a href="StakeholderCourses.php">
                     <span class="material-symbols-outlined">
                         school
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="#">
+                <a href="StakeholderProject.php">
                     <span class="material-symbols-outlined">
                         deployed_code
                     </span>
                     <p>Projects</p> 
                 </a>
-                <a href="#">
+                <a href="StakeholderInstructors.php">
                     <span class="material-symbols-outlined">
                         design_services
                     </span>
                         <p>Instructors</p> 
                 </a>
-                <a href="#">
+                <a href="StakeholderStake.php">
                     <span class="material-symbols-outlined">
                         volunteer_activism
                     </span>

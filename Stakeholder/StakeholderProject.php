@@ -1,3 +1,13 @@
+<?php
+
+    require_once ('../connection.php');
+    $sql = "SELECT *
+            FROM projects";
+    $all_classes = $conn->query($sql);
+
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -54,25 +64,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                <?php
+                    while($row = mysqli_fetch_assoc($all_classes)){
+                ?>
                 <tr>
-                    <td>Teachers Aid</td>
-                    <td>University of Idaho</td>
-                    <td>Uidahohelp@vandals.uidaho.edu</td>
-                    <td>Experience classroom rush, Understading of mathimatics</td>
+                    <td><?php echo $row["project_name"] ?></td>
+                    <td><?php echo $row["project_stakeholder"] ?></td>
+                    <td>N/A</td>
+                    <td><?php echo $row["project_skills"] ?></td>
                 </tr>
-                <tr>
-                    <td>Construct Server</td>
-                    <td>Techo</td>
-                    <td>TechoHelp@techo.com</td>
-                    <td>Computer knowledge, Experience with large systems</td>
-                </tr>
-                <tr>
-                    <td>Build Website</td>
-                    <td>Locally</td>
-                    <td>Localhelp@locally.com</td>
-                    <td>HTML, CSS, JAVA SCRIPT</td>
-                </tr>
+                <?php
+                    }
+                ?>
                 </tbody>
+
             </table>
 
             </div>

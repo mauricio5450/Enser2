@@ -17,8 +17,7 @@
         $check = $_FILES["image"]["size"];
         $upload_ok = 0;
         if(file_exists($upload_file)){
-            echo "<script>alert('The File already exists')</script>";
-            $upload_ok = 0;
+            $upload_ok = 2;
         }else{
             $upload_ok = 1;
             if($check !== false){
@@ -35,11 +34,19 @@
         }
         if($upload_ok == 0){
             echo'<script>alert("Sorry your file is not uploaded please try again!")</script>';
+        }else if($upload_ok==2){
+            if($coursename!=""&&$coursedesc!=""&&$courseinst!=""&&$courselocation!=""&&$courseskills!=""){
+                $sql = "INSERT INTO classes(course_name,course_desc,Location,Instructor,skills_learned,course_image) 
+                VALUES('$coursename','$coursedesc','$courselocation','$courseinst','$courseskills','$classimg')";
+                if($conn->query($sql)==TRUE){
+                    echo "<script>alert('your image uploaded succesfully')</script>";
+                }
+            }  
         }else{
             if($coursename!=""&&$coursedesc!=""&&$courseinst!=""&&$courselocation!=""&&$courseskills!=""){
                 move_uploaded_file($_FILES["image"]["tmp_name"],$upload_file);
                 $sql = "INSERT INTO classes(course_name,course_desc,Location,Instructor,skills_learned,course_image) 
-                VALUES('$coursename','$coursedesc','$courseinst','$courselocation','$courseskills','$classimg')";
+                VALUES('$coursename','$coursedesc','$courselocation','$courseinst','$courseskills','$classimg')";
                 if($conn->query($sql)==TRUE){
                     echo "<script>alert('your image uploaded succesfully')</script>";
                 }

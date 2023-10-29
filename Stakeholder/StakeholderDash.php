@@ -1,3 +1,12 @@
+<?php
+
+    require_once ('../connection.php');
+    $sql = "SELECT *
+            FROM projects";
+    $all_classes = $conn->query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -46,19 +55,23 @@
             <button type="button" class="btn btn-primary btn-block custom-butt"><a href="CreateProject.php" class="Butt-Cust">Create Project</a></button>
                 <div class="container">
                     <div class="row">
-
+                        <?php
+                            while($row = mysqli_fetch_assoc($all_classes)){
+                        ?>
                         <div class="col-sm-6">
                             <div class="card" style="width:400px">
-                                <img class="card-img-top" src="../images/Classroom.jpg" alt="Card image">
+                                <img class="card-img-top" src="<?php echo $row["project_img"] ?>" alt="Card image">
                                 <div class="card-body">
-                                    <h4 class="card-title">Teachers Aid</h4>
-                                    <p class="card-text">Stakeholder: University of Idaho</p>
+                                    <h4 class="card-title"><?php echo $row["project_name"] ?></h4>
+                                    <p class="card-text">Stakeholder: <?php echo $row["project_stakeholder"] ?></p>
                                     <a href="#" class="btn btn-primary">Contact</a>
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </div>
                             </div>
                         </div>
-
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
 
@@ -77,7 +90,7 @@
                     </span>
                     <p>Students</p> 
                 </a>
-                <a href="StakeholderCourses.php/">
+                <a href="StakeholderCourses.php">
                     <span class="material-symbols-outlined">
                         school
                     </span>

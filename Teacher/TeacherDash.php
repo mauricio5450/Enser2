@@ -1,3 +1,12 @@
+<?php
+
+    require_once ('../connection.php');
+    $sql = "SELECT *
+            FROM classes";
+    $all_classes = $conn->query($sql);
+
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -46,30 +55,23 @@
                 <button type="button" class="btn btn-primary btn-block custom-butt"><a href="Createclass.php" class="Butt-Cust">Create Class</a></button>
                 <div class="container">
                     <div class="row">
-
+                        <?php
+                            while($row = mysqli_fetch_assoc($all_classes)){
+                        ?>
                         <div class="col-sm-6">
                             <div class="card" style="width:400px">
-                                <img class="card-img-top" src="../images/csclass.jpg" alt="Card image">
+                                <img class="card-img-top" src="<?php echo $row["course_image"] ?>" alt="Card image">
                                 <div class="card-body">
-                                    <h4 class="card-title">CS 240</h4>
-                                    <p class="card-text">Professor: Jane Doe</p>
+                                    <h4 class="card-title"><?php echo $row["course_name"] ?></h4>
+                                    <p class="card-text">Professor: <?php echo $row["Instructor"] ?></p>
                                     <a href="#" class="btn btn-primary">See class</a>
-                                    <a href="#" class="btn btn-danger">Delete</a>
+                                    <a href="TeacherDash.php?" class="btn btn-danger">Delete</a>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="../images/ececlass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">ECE 320</h4>
-                                    <p class="card-text">Professor: Jane Doe</p>
-                                    <a href="#" class="btn btn-primary">See class</a>
-                                    <a href="#" class="btn btn-danger">Delete</a>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
