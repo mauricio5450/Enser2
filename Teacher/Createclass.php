@@ -102,6 +102,7 @@
         <div>
         <!--Things to the right of the navbar--> 
             <div class="content-to-right">
+            <p>Hey, <?php echo $_SESSION['username']; ?>!</p>
                 <form action="Createclass.php" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">

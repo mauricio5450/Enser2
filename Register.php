@@ -38,7 +38,10 @@
             <input type="text" class="login-input" name="username" placeholder="Username" required/>
             <input type="text" class="login-input" name="firstname" placeholder="First Name" required/>
             <input type="text" class="login-input" name="lastname" placeholder="Last Name" required/>
-            <input type="text" class="login-input" name="email" placeholder="Email Address">
+            <input type="text" class="login-input" name="email" placeholder="Email Address"required>
+            <input type="text" class="login-input" name="Sex" placeholder="Sex">
+            <input type="text" class="login-input" name="State" placeholder="Current State">
+            <input type="text" class="login-input" name="Town" placeholder="Current Town">
             <input type="password" class="login-input" name = "password" placeholder="Password">
             <input type="submit" name="submit" value="Register" class="login-button">
         </form>

@@ -42,6 +42,8 @@
 <!--This is the beggining of the sidebar-->
         <!--Things to the right of the navbar--> 
             <div class="content-to-right">
+                        <p>Hey, <?php echo $_SESSION['username']; ?>!</p>
+
             <table class="table" class="custom-table">
                 <thead>
                     <tr>
