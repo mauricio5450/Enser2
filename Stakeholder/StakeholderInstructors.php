@@ -1,3 +1,15 @@
+
+
+<?php
+    include("authconnection.php");
+    require_once ('../connection.php');
+    $sql = "SELECT *
+            FROM classes";
+    $all_classes = $conn->query($sql);
+
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +40,7 @@
                             <span class="material-symbols-outlined">
                             logout
                         </span>-->
-                        <a class="nav-link" href="../Login.php">SIGN OUT</a>
+                        <a class="nav-link" href="logout.php">SIGN OUT</a>
                   </ul>
               </div>
             </div>
@@ -46,24 +58,15 @@
 
                 <table class="table" class="custom-table">
                 <thead>
-                    <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
+                <?php
+                    while($row = mysqli_fetch_assoc($all_classes)){
+                ?>
                 <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
+                    <td><?php echo $row["Instructor"] ?></td>
                 </tr>
-                <tr>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>Jane@example.com</td>
-                </tr>
-
+                <?php
+                    }
+                ?>
                 </tbody>
             </table>
 

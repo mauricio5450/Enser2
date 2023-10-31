@@ -38,7 +38,7 @@
                             <span class="material-symbols-outlined">
                             logout
                         </span>-->
-                        <a class="nav-link" href="../Login.php">SIGN OUT</a>
+                        <a class="nav-link" href="logout.php">SIGN OUT</a>
                   </ul>
               </div>
             </div>

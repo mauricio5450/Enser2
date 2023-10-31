@@ -1,3 +1,14 @@
+
+<?php
+    include("authconnection.php");
+    require_once ('../connection.php');
+    $sql = "SELECT *
+            FROM projects";
+    $all_projects = $conn->query($sql);
+
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +39,7 @@
                             <span class="material-symbols-outlined">
                             logout
                         </span>-->
-                        <a class="nav-link" href="../Login.php">SIGN OUT</a>
+                        <a class="nav-link" href="logout.php">SIGN OUT</a>
                   </ul>
               </div>
             </div>
@@ -46,22 +57,18 @@
                 <thead>
                     <tr>
                         <th>Shareholder</th>
-                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php
+                    while($row = mysqli_fetch_assoc($all_projects)){
+                ?>
                 <tr>
-                    <td>University of Idaho</td>
-                    <td>Uidahohelp@vandals.uidaho.edu</td>
+                    <td><?php echo $row["project_stakeholder"] ?></td>
                 </tr>
-                <tr>
-                    <td>Techo</td>
-                    <td>TechoHelp@techo.com</td>
-                </tr>
-                <tr>
-                    <td>Locally</td>
-                    <td>Localhelp@locally.com</td>
-                </tr>
+                <?php
+                    }
+                ?>
                 </tbody>
             </table>
             </div>

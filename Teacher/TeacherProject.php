@@ -1,3 +1,14 @@
+
+<?php
+    include("authconnection.php");
+    require_once ('../connection.php');
+    $sql = "SELECT *
+            FROM projects";
+    $all_projects = $conn->query($sql);
+
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +39,7 @@
                             <span class="material-symbols-outlined">
                             logout
                         </span>-->
-                        <a class="nav-link" href="../Login.php">SIGN OUT</a>
+                        <a class="nav-link" href="logout.php">SIGN OUT</a>
                   </ul>
               </div>
             </div>
@@ -47,29 +58,23 @@
                     <tr>
                         <th>Project</th>
                         <th>Shareholder</th>
-                        <th>Email</th>
+                        <th>Location</th>
                         <th>Skills to learn</th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php
+                    while($row = mysqli_fetch_assoc($all_projects)){
+                ?>
                 <tr>
-                    <td>Teachers Aid</td>
-                    <td>University of Idaho</td>
-                    <td>Uidahohelp@vandals.uidaho.edu</td>
-                    <td>Experience classroom rush, Understading of mathimatics</td>
+                    <td><?php echo $row["project_name"] ?></td>
+                    <td><?php echo $row["project_stakeholder"] ?></td>
+                    <td><?php echo $row["project_loc"] ?></td>
+                    <td><?php echo $row["project_skills"] ?></td>
                 </tr>
-                <tr>
-                    <td>Construct Server</td>
-                    <td>Techo</td>
-                    <td>TechoHelp@techo.com</td>
-                    <td>Computer knowledge, Experience with large systems</td>
-                </tr>
-                <tr>
-                    <td>Build Website</td>
-                    <td>Locally</td>
-                    <td>Localhelp@locally.com</td>
-                    <td>HTML, CSS, JAVA SCRIPT</td>
-                </tr>
+                <?php
+                    }
+                ?>
                 </tbody>
             </table>
             </div>

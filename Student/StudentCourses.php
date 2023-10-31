@@ -1,3 +1,13 @@
+<?php
+    include("authconnection.php");
+    require_once ('../connection.php');
+    $sql = "SELECT *
+            FROM classes";
+    $all_classes = $conn->query($sql);
+
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +38,7 @@
                             <span class="material-symbols-outlined">
                             logout
                         </span>-->
-                        <a class="nav-link" href="Login.php">SIGN OUT</a>
+                        <a class="nav-link" href="logout.php">SIGN OUT</a>
                   </ul>
               </div>
             </div>
@@ -58,51 +68,20 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                <?php
+                    while($row = mysqli_fetch_assoc($all_classes)){
+                ?>
                 <tr>
-                    <td>CS 120</td>
-                    <td>This is the fundamental basics to Computer Science</td>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                    <td>Montana</td>
-                    <td>Helena</td>
-                    <td>Male</td>
-                    <td><a href="#" class="btn btn-danger">Drop</a></td>
+                    <td><?php echo $row["course_name"] ?></td>
+                    <td><?php echo $row["course_desc"] ?></td>
+                    <td><?php echo $row["Instructor"] ?></td>
+                    <td><?php echo $row["Location"] ?></td>
+                    <td><?php echo $row["skills_learned"] ?></td>
                 </tr>
-                <tr>
-                    <td>CS 240</td>
-                    <td>This is the more advanced Computer Science class</td>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>Jane@example.com</td>
-                    <td>Idaho</td>
-                    <td>Boise</td>
-                    <td>Female</td>
-                    <td><a href="#" class="btn btn-danger">Drop</a></td>
-                </tr>
-                <tr>
-                    <td>ECE 320</td>
-                    <td>This is the upper division ECE class</td>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>Jane@example.com</td>
-                    <td>Idaho</td>
-                    <td>Boise</td>
-                    <td>Female</td>
-                    <td><a href="#" class="btn btn-danger">Drop</a></td>
-                </tr>
-                
-                <tr>
-                    <td>Math 270</td>
-                    <td>This is the harder math class</td>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                    <td>Montana</td>
-                    <td>Helena</td>
-                    <td>Male</td>
-                    <td><a href="#" class="btn btn-danger">Drop</a></td>
-                </tr>
+                <?php
+                    }
+                ?>
 
                 </tbody>
             </table>
