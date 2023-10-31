@@ -124,12 +124,19 @@
                     </span>
                         <p>Instructors</p> 
                 </a>
-                <a href="StudentPast.php">
+                <a href="Studenjobs.php">
                     <span class="material-symbols-outlined">
                         history
                     </span>
-                    <p>Past Courses</p> 
+                    <p>Jobs</p> 
                 </a>
+                <a href="#">
+                    <span class="material-symbols-outlined">
+                        upload_file
+                    </span>
+                    <p>Reflections</p> 
+                </a>
+
 <!-- TEMP TAKEOUT
                 <a href="#">
                     <span class="material-symbols-outlined">

@@ -32,7 +32,7 @@
                         <li class="nav-item">
                         <a class="nav-link" href="../Teacher/TeacherLogin.php">TEACHER</a>
                         <li class="nav-item">
-                        <a class="nav-link" href="../Studentholder/StudentLogin.php">STUDENT</a>
+                        <a class="nav-link" href="../Student/StudentLogin.php">STUDENT</a>
                   </ul>
               </div>
             </div>
