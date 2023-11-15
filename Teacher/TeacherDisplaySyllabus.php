@@ -1,12 +1,18 @@
+
 <?php
     include("authconnection.php");
     require_once ('../connection.php');
+
+    $selectedClass = intval($_SESSION['selected_class']);
+
     $sql = "SELECT *
-            FROM classes";
+            FROM syllabus
+            WHERE syllabus.class_id = $selectedClass";
     $all_classes = $conn->query($sql);
 
 
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +26,7 @@
         <nav class="navbar navbar-expand-sm navbar">
             <div class="container-xxl">
               <!-- Logo -->
-                <a class="navbar-brand" href="TeacherDash.php">
+                <a class="navbar-brand" href=" ">
                     <img src="../images/enser logo.png" alt="Logo" style="width: 50px" style="height: 50px">
                 </a>
                 <h1 class="brand-text">nser</h1>
@@ -44,55 +50,33 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Teacher Dashboard</h2>
+                <h2>Projects</h2>
             </div>
         </div>
 <!--The end of the navbar-->
 <!--This is the beggining of the sidebar-->
-        <div>
         <!--Things to the right of the navbar--> 
             <div class="content-to-right">
-                <button type="button" class="btn btn-primary btn-block custom-butt"><a href="Createclass.php" class="Butt-Cust">Create Class</a></button>
-                <div class="container">
-                    <div class="row">
-                        <?php
-                            while($row = mysqli_fetch_assoc($all_classes)){
-                        ?>
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="<?php echo $row["course_image"] ?>" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title"><?php echo $row["course_name"] ?></h4>
-                                    <p class="card-text">Professor: <?php echo $row["Instructor"] ?></p>
-                                    <a class="btn btn-primary" onclick= "selectClassAndRedirect(<?php echo $row['id'] ?>)">See class</a>
-                                    <a href="TeacherDash.php?" class="btn btn-danger">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                            }
-                        ?>
-                    </div>
+                <?php
+                    $row = mysqli_fetch_assoc($all_classes)
+                ?>    
+                <h1><?php echo $row["class_name"] ?></h1>
+                <div class="Description">
+                    <h4>Class Description: </h2>
+                    <p><?php echo $row["class_desc"] ?></p>
+                </div>
+                <div class="Dates">
+                    <h4>Course time: </h4>
+                    <p><?php echo $row["class_start_date"] ?> - <?php echo $row["class_enddate"] ?></p>
+                </div>
+                <div class="Grading">
+                    <h4>Grading Scheme: </h4>
+                    <p><?php echo $row["Grading Scheme"] ?></p>
                 </div>
             </div>
-            <script>
-                function selectClassAndRedirect(classID) {
-                    // Use AJAX to send the selected class ID to the server
-                    // Update the session variable without reloading the page
-                    let xhr = new XMLHttpRequest();
-                    xhr.open('GET', 'authconnection.php?class_id=' + classID, true);
-                    xhr.onreadystatechange = function() {
-                        if (xhr.readyState == 4 && xhr.status == 200) {
-                            // Redirect to the specified destination
-                            window.location.href = 'TeacherClass.php';
-                        }
-                    };
-                    xhr.send();
-                }
-            </script>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="TeacherDash.php" class="active">
+                <a href="TeacherDash.php">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
@@ -116,11 +100,36 @@
                     </span>
                     <p>Projects</p> 
                 </a>
-                <a href="#">
+                <a href="TeacherStakeholders.php">
                     <span class="material-symbols-outlined">
                         volunteer_activism
                     </span>
                     <p>Stakeholders</p> 
+                </a>
+
+                <a href ="TeacherDisplaySyllabus.php">
+                    <span class="material-symbols-outlined">
+                        summarize
+                    </span>
+                    <p>Syllabus</p>
+                </a>
+                <a href ="TeacherSyllabus.php">
+                    <span class="material-symbols-outlined">
+                        note_add
+                    </span>
+                    <p>Add Syllabus</p>
+                </a>
+                <a href ="Teacher Assignment">
+                    <span class="material-symbols-outlined">
+                        assignment
+                    </span>
+                    <p>Assingmnets</p>
+                </a>
+                <a href ="Teacher Assignment">
+                    <span class="material-symbols-outlined">
+                        assignment_add
+                    </span>
+                    <p>Create Assingmnet</p>
                 </a>
         </div>           
     </body>

@@ -1,61 +1,34 @@
 <?php
     require_once ('../connection.php');
-    
+    include("authconnection.php");
+
+    $selectedClass = intval($_SESSION['selected_class']);
+
+    $sql = "SELECT *
+            FROM classes
+            WHERE classes.id = $selectedClass";
+    $all_classes = $conn->query($sql);
+
+    $row = mysqli_fetch_assoc($all_classes);
+    $class_name = $row["course_name"];
+
     if(isset($_POST["submit"])){
-        $coursename = $_POST["course_name"];
-        $coursedesc = $_POST["course_desc"];
-        $courseinst = $_POST["course_Inst"];
-        $courselocation = $_POST["course_location"];
-        $courseskills = $_POST["course_skills"];
-        
-        
-        $upload_dir = "classimg/";
-        $classimg = $upload_dir.$_FILES["image"]["name"];
-        $upload_dir.$_FILES["image"]["name"];
-        $upload_file = $upload_dir.basename($_FILES["image"]["name"]);
-        $imagetype = strtolower(pathinfo($upload_file, PATHINFO_EXTENSION));
-        $check = $_FILES["image"]["size"];
-        $upload_ok = 0;
-        if(file_exists($upload_file)){
-            $upload_ok = 2;
-        }else{
-            $upload_ok = 1;
-            if($check !== false){
-                $upload_ok = 1;
-                if($imagetype == 'jpg'||$imagetype == 'png'||$imagetype == 'jpeg'){
-                    $upload_ok = 1;
-                }else{
-                    echo'<script>alert("Please change the image format")</script>';
-                }
-            }else{
-                echo '<script>alert("The phot size is 0 please change the photo")</script>';
-                $upload_ok = 0;
-            }
-        }
-        if($upload_ok == 0){
-            echo'<script>alert("Sorry your file is not uploaded please try again!")</script>';
-        }else if($upload_ok==2){
-            if($coursename!=""&&$coursedesc!=""&&$courseinst!=""&&$courselocation!=""&&$courseskills!=""){
-                $sql = "INSERT INTO classes(course_name,course_desc,Location,Instructor,skills_learned,course_image) 
-                VALUES('$coursename','$coursedesc','$courselocation','$courseinst','$courseskills','$classimg')";
-                if($conn->query($sql)==TRUE){
-                    echo "<script>alert('your image uploaded succesfully')</script>";
-                }
-            }  
-        }else{
-            if($coursename!=""&&$coursedesc!=""&&$courseinst!=""&&$courselocation!=""&&$courseskills!=""){
-                move_uploaded_file($_FILES["image"]["tmp_name"],$upload_file);
-                $sql = "INSERT INTO classes(course_name,course_desc,Location,Instructor,skills_learned,course_image) 
-                VALUES('$coursename','$coursedesc','$courselocation','$courseinst','$courseskills','$classimg')";
+        $class_id = $selectedClass;
+        $class_desc = $_POST["class_desc"];
+        $class_start = $_POST["class_start_date"];
+        $class_end = $_POST["class_enddate"];
+        $class_grade = $_POST["Grading_Scheme"];
+    
+            if($class_id!=""&&$class_desc!=""&&$class_start!=""&&$class_end!=""&&$class_grade!=""&&$class_name!=""){
+                $sql = "INSERT INTO syllabus(class_id,class_name,class_desc,class_start_date, class_enddate,`Grading Scheme`) 
+                VALUES('$class_id','$class_name','$class_desc','$class_start','$class_end','$class_grade')";
                 if($conn->query($sql)==TRUE){
                     echo "<script>alert('your image uploaded succesfully')</script>";
                 }
             }
-        }
     }
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -70,7 +43,7 @@
         <nav class="navbar navbar-expand-sm navbar">
             <div class="container-xxl">
               <!-- Logo -->
-                <a class="navbar-brand" href="TeacherDash.php">
+                <a class="navbar-brand" href=" ">
                     <img src="../images/enser logo.png" alt="Logo" style="width: 50px" style="height: 50px">
                 </a>
                 <h1 class="brand-text">nser</h1>
@@ -87,50 +60,41 @@
                             <span class="material-symbols-outlined">
                             logout
                         </span>-->
-                        <a class="nav-link" href="TeacherLogin.php">SIGN OUT</a>
+                        <a class="nav-link" href="logout.php">SIGN OUT</a>
                   </ul>
               </div>
             </div>
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Create Class</h2>
+                <h2>Projects</h2>
             </div>
         </div>
 <!--The end of the navbar-->
 <!--This is the beggining of the sidebar-->
-        <div>
         <!--Things to the right of the navbar--> 
             <div class="content-to-right">
-                <form action="Createclass.php" method="POST" enctype="multipart/form-data">
-
+                <?php
+                ?>    
+                <form action="TeacherSyllabus.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label>Course Name:</label>
-                        <input name="course_name" class="form-control custom-input">
+                        <label>Class Description:</label>
+                        <input name="class_desc" class="form-control custom-input">
                     </div>
 
                     <div class="form-group">
-                        <label>Course Description:</label>
-                        <input name="course_desc" class="form-control custom-input">
+                        <label>Class Start Date:</label>
+                        <input name="class_start_date" class="form-control custom-input">
                     </div>
 
                     <div class="form-group">
-                        <label>Location:</label>
-                        <input name="course_location" class="form-control custom-input">
+                        <label>Class End Date:</label>
+                        <input name="class_enddate" class="form-control custom-input">
                     </div>
 
                     <div class="form-group">
-                        <label>Instructor:</label>
-                        <input name="course_Inst" class="form-control custom-input">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Skills Learned:</label>
-                        <input name="course_skills" class="form-control custom-input">
-                    </div>
-                    <div class="form-group">
-                        <label>Select image to upload as a class picture: </label>
-                        <input type="file" name="image"/>
+                        <label>Grading Scheme:</label>
+                        <input name="Grading_Scheme" class="form-control custom-input">
                     </div>
                     <input type="submit" name = "submit" class="btn btn-primary">
                 </form>
@@ -167,8 +131,31 @@
                     </span>
                     <p>Stakeholders</p> 
                 </a>
-        </div>
-        <!--This is the end of the sidebar--> 
-           
+
+                <a href ="TeacherDisplaySyllabus.php">
+                    <span class="material-symbols-outlined">
+                        summarize
+                    </span>
+                    <p>Syllabus</p>
+                </a>
+                <a href ="TeacherSyllabus.php">
+                    <span class="material-symbols-outlined">
+                        note_add
+                    </span>
+                    <p>Add Syllabus</p>
+                </a>
+                <a href ="Teacher Assignment">
+                    <span class="material-symbols-outlined">
+                        assignment
+                    </span>
+                    <p>Assingmnets</p>
+                </a>
+                <a href ="Teacher Assignment">
+                    <span class="material-symbols-outlined">
+                        assignment_add
+                    </span>
+                    <p>Create Assingmnet</p>
+                </a>
+        </div>           
     </body>
 </html>
