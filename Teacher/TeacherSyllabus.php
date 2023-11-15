@@ -144,13 +144,13 @@
                     </span>
                     <p>Add Syllabus</p>
                 </a>
-                <a href ="Teacher Assignment">
+                <a href ="TeacherAssignment.php">
                     <span class="material-symbols-outlined">
                         assignment
                     </span>
                     <p>Assingmnets</p>
                 </a>
-                <a href ="Teacher Assignment">
+                <a href ="TeacherAssignmentCreate.php">
                     <span class="material-symbols-outlined">
                         assignment_add
                     </span>

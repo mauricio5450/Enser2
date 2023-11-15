@@ -6,9 +6,9 @@
     $selectedClass = intval($_SESSION['selected_class']);
 
     $sql = "SELECT *
-            FROM syllabus
-            WHERE syllabus.class_id = $selectedClass";
-    $all_classes = $conn->query($sql);
+            FROM assignments
+            WHERE assignments.class_id = $selectedClass";
+    $all_assignments = $conn->query($sql);
 
 
 ?>
@@ -50,29 +50,35 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Projects</h2>
+                <h2>Assignments</h2>
             </div>
         </div>
 <!--The end of the navbar-->
 <!--This is the beggining of the sidebar-->
         <!--Things to the right of the navbar--> 
             <div class="content-to-right">
-                <?php
-                    $row = mysqli_fetch_assoc($all_classes)
-                ?>    
-                <h1><?php echo $row["class_name"] ?></h1>
-                <div class="Description">
-                    <h4>Class Description: </h2>
-                    <p><?php echo $row["class_desc"] ?></p>
-                </div>
-                <div class="Dates">
-                    <h4>Course time: </h4>
-                    <p><?php echo $row["class_start_date"] ?> - <?php echo $row["class_enddate"] ?></p>
-                </div>
-                <div class="Grading">
-                    <h4>Grading Scheme: </h4>
-                    <p><?php echo $row["Grading Scheme"] ?></p>
-                </div>
+                <table class="table" class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Assignment Name</th>
+                            <th>Due Date</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        while($row = mysqli_fetch_assoc($all_assignments)){
+                    ?>
+                    <tr>
+                        <td><?php echo $row["a_title"] ?></td>
+                        <td><?php echo $row["a_date"] ?></td>
+                        <td><a href="#">View Course</a></td>
+                    </tr>
+                    <?php
+                        }
+                    ?>
+                    </tbody>
+                </table>
             </div>
         <!--The end of the things to the right nabar-->
         <div class="sidebar">
