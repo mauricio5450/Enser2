@@ -44,6 +44,10 @@
             if (isset($_REQUEST['username'])) {
                 $username = stripslashes($_REQUEST['username']);
                 $username = mysqli_real_escape_string($conn, $username);
+
+                $checkQuery = "SELECT * FROM `students=` WHERE student_username='$username'";
+                $checkResult = mysqli_query($conn, $checkQuery);
+                $existingRows = mysqli_num_rows($checkResult);
                 
                 $email    = stripslashes($_REQUEST['email']);
                 $email    = mysqli_real_escape_string($conn, $email);
@@ -65,20 +69,30 @@
 
                 $password = stripslashes($_REQUEST['password']);
                 $password = mysqli_real_escape_string($conn, $password);
-                $query    = "INSERT into `students` (student_username,student_first,student_last,student_email,student_password,student_sex, student_state,student_town)
-                     VALUES ('$username','$first','$last','$email', '" . md5($password) . "','$sex','$state','$town')";
-                $result   = mysqli_query($conn, $query);
-                if ($result) {
-                 echo "<div class='form'>
-                    <h3>You are registered successfully.</h3><br/>
-                    <p class='link'>Click here to <a href='StudentLogin.php'>Login</a></p>
-                    </div>";
-                } else {
+
+
+                if ($existingRows > 0) {
+                    // Username already exists, show an error message
                     echo "<div class='form'>
-                    <h3>Required fields are missing.</h3><br/>
-                    <p class='link'>Click here to <a href='StudentRegister.php'>registration</a> again.</p>
-                    </div>";
-        }
+                        <h3>Username already in use. Choose another username.</h3><br/>
+                        <p class='link'>Click here to <a href='StudentRegister.php'>registration</a> again.</p>
+                        </div>";
+                } else {
+                    $query    = "INSERT into `students` (student_username,student_first,student_last,student_email,student_password,student_sex, student_state,student_town)
+                    VALUES ('$username','$first','$last','$email', '" . md5($password) . "','$sex','$state','$town')";
+                    $result   = mysqli_query($conn, $query);
+                    if ($result) {
+                        echo "<div class='form'>
+                           <h3>You are registered successfully.</h3><br/>
+                           <p class='link'>Click here to <a href='StudentLogin.php'>Login</a></p>
+                           </div>";
+                    } else {
+                           echo "<div class='form'>
+                           <h3>Required fields are missing.</h3><br/>
+                           <p class='link'>Click here to <a href='StudentRegister.php'>registration</a> again.</p>
+                           </div>";
+                    }
+                }
     } else {
         ?>
 

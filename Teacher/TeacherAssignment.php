@@ -125,7 +125,7 @@
                     </span>
                     <p>Add Syllabus</p>
                 </a>
-                <a href ="TeacherAssignment.php">
+                <a href ="TeacherAssignment.php" class="active">
                     <span class="material-symbols-outlined">
                         assignment
                     </span>

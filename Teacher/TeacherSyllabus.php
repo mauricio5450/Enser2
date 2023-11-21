@@ -67,7 +67,6 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Projects</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -138,7 +137,7 @@
                     </span>
                     <p>Syllabus</p>
                 </a>
-                <a href ="TeacherSyllabus.php">
+                <a href ="TeacherSyllabus.php" class="active">
                     <span class="material-symbols-outlined">
                         note_add
                     </span>

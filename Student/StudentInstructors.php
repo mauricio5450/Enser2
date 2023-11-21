@@ -3,8 +3,8 @@
     include("authconnection.php");
     require_once ('../connection.php');
     $sql = "SELECT *
-            FROM classes";
-    $all_classes = $conn->query($sql);
+            FROM teachers";
+    $all_teachers = $conn->query($sql);
 
 
 ?>
@@ -55,17 +55,21 @@
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
             <table class="table" class="custom-table">
+                <?php
+                    while($row = mysqli_fetch_assoc($all_teachers)){
+                ?>
                 <thead>
                     <tr>
                         <th>Names</th>
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><?php echo $row["course_name"] ?></td>
-                </tr>
+                    <td><?php echo $row["teacher_username"] ?></td>
                 </tbody>
             </table>
+            <?php
+                }
+            ?>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
@@ -99,15 +103,6 @@
                     </span>
                     <p>Past Courses</p> 
                 </a>
-<!-- TEMP TAKEOUT
-                <a href="#">
-                    <span class="material-symbols-outlined">
-                        logout
-                    </span>
-                    <p>Logout</p> 
-                </a>
-            </div>
--->
 
         </div>
         <!--This is the end of the sidebar--> 

@@ -51,8 +51,12 @@
                      AND teacher_password='" . md5($password) . "'";
                 $result = mysqli_query($conn, $query);
                 $rows = mysqli_num_rows($result);
+
                 if ($rows == 1) {
+                    $row = mysqli_fetch_assoc($result);
                     $_SESSION['username'] = $username;
+                    $_SESSION['last_name'] = $row['teacher_last'];
+                    $_SESSION['instructor_id'] = $row['id'];
                     // Redirect to user dashboard page
                     header("Location: TeacherDash.php");
                 } else {

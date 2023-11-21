@@ -63,7 +63,6 @@ if (isset($_POST["submit"])) {
 </nav>
 <div class="row">
     <div class="col-sm-4 text-left p-4">
-        <h2>Projects</h2>
     </div>
 </div>
 <!-- The end of the navbar -->
@@ -145,7 +144,7 @@ if (isset($_POST["submit"])) {
                     </span>
                     <p>Assingmnets</p>
                 </a>
-                <a href ="TeacherAssignmentCreate.php">
+                <a href ="TeacherAssignmentCreate.php" class="active">
                     <span class="material-symbols-outlined">
                         assignment_add
                     </span>

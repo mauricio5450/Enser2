@@ -50,7 +50,6 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Projects</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -107,7 +106,7 @@
                     <p>Stakeholders</p> 
                 </a>
 
-                <a href ="TeacherDisplaySyllabus.php">
+                <a href ="TeacherDisplaySyllabus.php" class="active">
                     <span class="material-symbols-outlined">
                         summarize
                     </span>

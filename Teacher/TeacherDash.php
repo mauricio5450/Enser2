@@ -55,6 +55,9 @@
                 <button type="button" class="btn btn-primary btn-block custom-butt"><a href="Createclass.php" class="Butt-Cust">Create Class</a></button>
                 <div class="container">
                     <div class="row">
+                        <p><?php echo $_SESSION['instructor_id'] ?></p>
+                        <p><?php echo $_SESSION['last_name'] ?></p>
+                        <p><?php echo $_SESSION['username'] ?></p>
                         <?php
                             while($row = mysqli_fetch_assoc($all_classes)){
                         ?>

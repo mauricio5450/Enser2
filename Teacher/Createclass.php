@@ -1,12 +1,15 @@
 <?php
     require_once ('../connection.php');
+    include('authconnection.php');
+    
     
     if(isset($_POST["submit"])){
         $coursename = $_POST["course_name"];
         $coursedesc = $_POST["course_desc"];
-        $courseinst = $_POST["course_Inst"];
+        $courseinst = $_SESSION["last_name"];
         $courselocation = $_POST["course_location"];
         $courseskills = $_POST["course_skills"];
+        $course_inst_id = intval($_SESSION["instructor_id"]);
         
         
         $upload_dir = "classimg/";
@@ -35,18 +38,18 @@
         if($upload_ok == 0){
             echo'<script>alert("Sorry your file is not uploaded please try again!")</script>';
         }else if($upload_ok==2){
-            if($coursename!=""&&$coursedesc!=""&&$courseinst!=""&&$courselocation!=""&&$courseskills!=""){
-                $sql = "INSERT INTO classes(course_name,course_desc,Location,Instructor,skills_learned,course_image) 
-                VALUES('$coursename','$coursedesc','$courselocation','$courseinst','$courseskills','$classimg')";
+            if($coursename!=""&&$coursedesc!=""&&$courseinst!=""&&$courselocation!=""&&$courseskills!=""&&$course_inst_id!=""){
+                $sql = "INSERT INTO classes(course_name,course_desc,Location,Instructor,skills_learned,course_image,instructor_id) 
+                VALUES('$coursename','$coursedesc','$courselocation','$courseinst','$courseskills','$classimg','$course_inst_id')";
                 if($conn->query($sql)==TRUE){
                     echo "<script>alert('your image uploaded succesfully')</script>";
                 }
             }  
         }else{
-            if($coursename!=""&&$coursedesc!=""&&$courseinst!=""&&$courselocation!=""&&$courseskills!=""){
+            if($coursename!=""&&$coursedesc!=""&&$courseinst!=""&&$courselocation!=""&&$courseskills!=""&&$courseskills!=""){
                 move_uploaded_file($_FILES["image"]["tmp_name"],$upload_file);
-                $sql = "INSERT INTO classes(course_name,course_desc,Location,Instructor,skills_learned,course_image) 
-                VALUES('$coursename','$coursedesc','$courselocation','$courseinst','$courseskills','$classimg')";
+                $sql = "INSERT INTO classes(course_name,course_desc,Location,Instructor,skills_learned,course_image,instructor_id) 
+                VALUES('$coursename','$coursedesc','$courselocation','$courseinst','$courseskills','$classimg',$course_inst_id)";
                 if($conn->query($sql)==TRUE){
                     echo "<script>alert('your image uploaded succesfully')</script>";
                 }
@@ -117,11 +120,6 @@
                     <div class="form-group">
                         <label>Location:</label>
                         <input name="course_location" class="form-control custom-input">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Instructor:</label>
-                        <input name="course_Inst" class="form-control custom-input">
                     </div>
 
                     <div class="form-group">
