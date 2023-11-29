@@ -4,8 +4,6 @@
     $sql = "SELECT *
             FROM classes";
     $all_classes = $conn->query($sql);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +12,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <link href="../css/style.css" rel="stylesheet">
     </head>
     <body>
@@ -58,12 +57,10 @@
                     <tr>
                         <th>Course</th>
                         <th>Description</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>State</th>
-                        <th>City/Town</th>
-                        <th>Sex</th>
+                        <th>Professor</th>
+                        <th>Location</th>
+                        <th>Skilles learned</th>
+                        <th>Enroll</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -78,6 +75,28 @@
                     <td><?php echo $row["Instructor"] ?></td>
                     <td><?php echo $row["Location"] ?></td>
                     <td><?php echo $row["skills_learned"] ?></td>
+                    <td>
+                    <a class="btn btn-primary" onclick= "Enroll(<?php echo $row['id'] ?>)">Enroll</a>
+                    </td>
+                    <script>
+                        function Enroll(classId) {
+                            var studentId = <?php echo $_SESSION('student_id'); ?>; // Replace with the actual way you get the student ID
+
+                            $.ajax({
+                                type: 'POST',
+                                url: 'enroll.php', // Create a new PHP file (enroll.php) to handle enrollments
+                                data: { classId: classId, studentId: studentId },
+                                success: function(response) {
+                                    // Handle the response, e.g., show a success message or update the UI
+                                    console.log(response);
+                                },
+                                error: function(error) {
+                                    // Handle errors, e.g., show an error message
+                                    console.error(error.responseText);
+                                }
+                            });
+                        }
+                    </script>
                 </tr>
                 <?php
                     }

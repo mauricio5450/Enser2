@@ -52,7 +52,9 @@
                 $result = mysqli_query($conn, $query);
                 $rows = mysqli_num_rows($result);
                 if ($rows == 1) {
+                    $row = mysqli_fetch_assoc($result);
                     $_SESSION['username'] = $username;
+                    $_SESSION['student_id'] = $row['id'];
                     // Redirect to user dashboard page
                     header("Location: StudentDash.php");
                 } else {

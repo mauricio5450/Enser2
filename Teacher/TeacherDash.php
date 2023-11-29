@@ -1,11 +1,11 @@
 <?php
     include("authconnection.php");
     require_once ('../connection.php');
+    $professor = intval($_SESSION['instructor_id']);
     $sql = "SELECT *
-            FROM classes";
+            FROM classes
+            WHERE classes.instructor_id = $professor";
     $all_classes = $conn->query($sql);
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,9 +55,6 @@
                 <button type="button" class="btn btn-primary btn-block custom-butt"><a href="Createclass.php" class="Butt-Cust">Create Class</a></button>
                 <div class="container">
                     <div class="row">
-                        <p><?php echo $_SESSION['instructor_id'] ?></p>
-                        <p><?php echo $_SESSION['last_name'] ?></p>
-                        <p><?php echo $_SESSION['username'] ?></p>
                         <?php
                             while($row = mysqli_fetch_assoc($all_classes)){
                         ?>
@@ -68,7 +65,12 @@
                                     <h4 class="card-title"><?php echo $row["course_name"] ?></h4>
                                     <p class="card-text">Professor: <?php echo $row["Instructor"] ?></p>
                                     <a class="btn btn-primary" onclick= "selectClassAndRedirect(<?php echo $row['id'] ?>)">See class</a>
-                                    <a href="TeacherDash.php?" class="btn btn-danger">Delete</a>
+                                    
+                                    <form action = "delete.php" method="post">
+                                        <input type="hidden" name="id" value="<?php echo $row["id"] ?>">
+                                        <input type="submit" name ="delete" class="btn btn-danger" value="Delete">
+                                    </form>
+
                                 </div>
                             </div>
                         </div>
