@@ -45,7 +45,12 @@
                 $username = stripslashes($_REQUEST['username']);
                 $username = mysqli_real_escape_string($conn, $username);
 
-                $checkQuery = "SELECT * FROM `students=` WHERE student_username='$username'";
+                $checkQuery = "SELECT * FROM `teachers` WHERE teacher_username='$username'
+                UNION
+                SELECT * FROM `stakeholders` WHERE stakeholder_username='$username'
+                UNION
+                SELECT * FROM `students` WHERE student_username='$username'";
+    
                 $checkResult = mysqli_query($conn, $checkQuery);
                 $existingRows = mysqli_num_rows($checkResult);
                 
