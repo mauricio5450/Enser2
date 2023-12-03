@@ -103,7 +103,12 @@
                     </span>
                     <p>Past Courses</p> 
                 </a>
-
+                <a href="StudentMessages.php">
+                    <span class="material-symbols-outlined">
+                        chat
+                    </span>
+                    <p>Message</p> 
+                </a>
         </div>
         <!--This is the end of the sidebar--> 
            

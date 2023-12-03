@@ -119,6 +119,12 @@
                     </span>
                     <p>Stakeholders</p> 
                 </a>
+                <a href="StakeholderMessages.php">
+                    <span class="material-symbols-outlined">
+                        chat
+                    </span>
+                    <p>Message</p> 
+                </a>
 <!-- TEMP TAKEOUT
                 <a href="#">
                     <span class="material-symbols-outlined">

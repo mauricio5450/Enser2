@@ -127,6 +127,12 @@
                     </span>
                     <p>Stakeholders</p> 
                 </a>
+                <a href="Teacher_Message.php">
+                    <span class="material-symbols-outlined">
+                        chat
+                    </span>
+                    <p>Message</p> 
+                </a>
         </div>           
     </body>
 </html>

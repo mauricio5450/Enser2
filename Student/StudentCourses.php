@@ -137,6 +137,12 @@
                     </span>
                     <p>Past Courses</p> 
                 </a>
+                <a href="StudentMessages.php">
+                    <span class="material-symbols-outlined">
+                        chat
+                    </span>
+                    <p>Message</p> 
+                </a>
 <!-- TEMP TAKEOUT
                 <a href="#">
                     <span class="material-symbols-outlined">
