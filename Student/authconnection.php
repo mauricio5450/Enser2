@@ -22,4 +22,12 @@ if (isset($_GET['assignment_id'])) {
     // You can optionally send a response back to the client
     echo "Class ID updated successfully";
 }
+
+if (isset($_GET['reflection_id'])) {
+    // Set the selected class ID in the session
+    $_SESSION['reflection_id'] = $_GET['reflection_id'];
+
+    // You can optionally send a response back to the client
+    echo "Class ID updated successfully";
+}
 ?>

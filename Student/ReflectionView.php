@@ -1,15 +1,13 @@
 <?php
-    include("authconnection.php");
     require_once ('../connection.php');
-
-    $selectedClass = intval($_SESSION['selected_class']);
-
+    include('authconnection.php');
+    
+    $selectedReflection = $_SESSION["reflection_id"];
     $sql = "SELECT *
-            FROM syllabus
-            WHERE syllabus.class_id = $selectedClass";
-    $all_classes = $conn->query($sql);
-
-
+            FROM reflections
+            WHERE id = $selectedReflection";
+    $all_assignments = $conn->query($sql);
+    $row = mysqli_fetch_assoc($all_assignments)
 ?>
 
 <!DOCTYPE html>
@@ -57,24 +55,8 @@
         <div>
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
-                <div class="container">
-                    <?php
-                        $row = mysqli_fetch_assoc($all_classes)
-                    ?>    
-                    <h1><?php echo $row["class_name"] ?></h1>
-                    <div class="Description">
-                        <h4>Class Description: </h2>
-                        <p><?php echo $row["class_desc"] ?></p>
-                    </div>
-                    <div class="Dates">
-                        <h4>Course time: </h4>
-                        <p><?php echo $row["class_start_date"] ?> - <?php echo $row["class_enddate"] ?></p>
-                    </div>
-                    <div class="Grading">
-                        <h4>Grading Scheme: </h4>
-                        <p><?php echo $row["Grading Scheme"] ?></p>
-                    </div>
-                </div>
+                <h1>Reflection Id: <?php echo $row["id"] ?></h1>
+                <p><?php echo $row["Reflection"] ?></p>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
@@ -108,7 +90,7 @@
                     </span>
                     <p>Jobs</p> 
                 </a>
-                <a href="StudentReflections.php">
+                <a href="StudentReflections.php" class="active">
                     <span class="material-symbols-outlined">
                         upload_file
                     </span>
