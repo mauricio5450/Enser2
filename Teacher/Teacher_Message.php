@@ -53,15 +53,29 @@
         <!--Things to the right of the navbar--> 
             <div class="content-to-right">
                 <div class="container">
-                    <p>Hi <?php echo $_SESSION['username'],$_SESSION['instructor_id']?></p>
-                    <input type="text" id ="fromUser" value=<?php echo $_SESSION["instructor_id"];?> hidden />
+                    <p>Hi <?php echo $_SESSION['username']?></p>
+                    <input type="text" id ="fromUser" value=<?php echo $_SESSION["username"];?> hidden />
                 </div>
                 <div class="people">
                     <p>Send message to: </p>
                     <ul>
                         <?php
                             while($row=mysqli_fetch_assoc($all_classes)){
-                                echo'<li><a href="?toUser=' .$row["id"].'">'.$row["teacher_username"].'</a></li>';
+                                echo'<li><a href="?toUser=' .$row["teacher_username"].'">'.$row["teacher_username"].' (Teacher)</a></li>';
+                            }
+
+                            $sql = "SELECT * FROM students";
+                            $all_classes = $conn->query($sql);
+
+                            while($row=mysqli_fetch_assoc($all_classes)){
+                                echo'<li><a href="?toUser=' .$row["student_username"].'">'.$row["student_username"].' (Student)</a></li>';
+                            }
+
+                            $sql = "SELECT * FROM stakeholders";
+                            $all_classes = $conn->query($sql);
+
+                            while($row=mysqli_fetch_assoc($all_classes)){
+                                echo'<li><a href="?toUser=' .$row["stakeholder_username"].'">'.$row["stakeholder_username"].' (Stakeholder)</a></li>';
                             }
                         ?>
                     </ul>
@@ -74,16 +88,24 @@
                                 <h4>
                                     <?php
                                         if(isset($_GET["toUser"])){
-                                            $Teacher_Username = "SELECT * FROM teachers WHERE id = '".$_GET["toUser"]."' ";
+                                            $Teacher_Username = "SELECT * FROM teachers WHERE teacher_username = '".$_GET["toUser"]."'                
+                                            UNION
+                                            SELECT * FROM `stakeholders` WHERE stakeholder_username='".$_GET["toUser"]."' 
+                                            UNION
+                                            SELECT * FROM `students` WHERE student_username='".$_GET["toUser"]."' ";
                                             $TC = $conn->query($Teacher_Username); 
                                             $uName = mysqli_fetch_assoc($TC);
                                             echo '<input type="text" value='.$_GET["toUser"].' id="toUser" hidden/>';
                                             echo $uName["teacher_username"];
                                         }else{
-                                            $Teacher_Username = "SELECT * FROM teachers";
+                                            $Teacher_Username = "SELECT * FROM teachers                 
+                                            UNION
+                                            SELECT * FROM `stakeholders`
+                                            UNION
+                                            SELECT * FROM `students` ";
                                             $TC = $conn->query($Teacher_Username); 
                                             $uName = mysqli_fetch_assoc($TC);
-                                            $_SESSION["toUser"] = $uName["id"];
+                                            $_SESSION["toUser"] = $uName["teacher_username"];
                                             echo '<input type="text" value='.$_SESSION["toUser"].' id="toUser" hidden/>';
                                             echo $uName["teacher_username"];
                                         }
@@ -93,14 +115,14 @@
                             <div class="modal-body" id="msgBody" style="height:400px; width:1000px; overflow-y: scroll; overflow-x:hidden;">
                                 <?php
                                     if(isset($_GET["toUser"])){
-                                        $chats = "SELECT * FROM messages WHERE(FromUser = '".$_SESSION["instructor_id"]."' AND ToUser = '".$_GET["toUser"]."') OR (FromUser='".$_GET["toUser"]."' AND ToUser = '".$_SESSION["instructor_id"]."')";
+                                        $chats = "SELECT * FROM messages WHERE(FromUser = '".$_SESSION["username"]."' AND ToUser = '".$_GET["toUser"]."') OR (FromUser='".$_GET["toUser"]."' AND ToUser = '".$_SESSION["username"]."')";
                                         $messages = $conn->query($chats); 
                                         $chat = mysqli_fetch_assoc($messages);
                                     }else{
-                                        $chats = "SELECT * FROM messages WHERE(FromUser = '".$_SESSION["instructor_id"]."' AND ToUser = '".$_SESSION["toUser"]."') OR (FromUser='".$_SESSION["instructor_id"]."' AND ToUser = '".$_SESSION["toUser"]."')";
+                                        $chats = "SELECT * FROM messages WHERE(FromUser = '".$_SESSION["username"]."' AND ToUser = '".$_SESSION["toUser"]."') OR (FromUser='".$_SESSION["username"]."' AND ToUser = '".$_SESSION["toUser"]."')";
                                         $messages = $conn->query($chats); 
                                         while($chat = mysqli_fetch_assoc($messages)){
-                                            if($chat["FromUser"]==$_SESSION["instructor_id"]){
+                                            if($chat["FromUser"]==$_SESSION["username"]){
                                                 echo"<div style='text-align:right;'>
                                                     <p style='background-color:lightblue; word-wrap:break-word;display:inline-block; padding:5px; border-radius:10px; max width:70%;'>
                                                         ".$chat["Message"]."
@@ -132,12 +154,6 @@
                         dashboard
                     </span>
                     <p>Dashboard</p>
-                </a>
-                <a href="TeacherStudents.php">
-                    <span class="material-symbols-outlined">
-                        person
-                    </span>
-                    <p>Students</p> 
                 </a>
                 <a href="TeacherCourses.php">
                     <span class="material-symbols-outlined">

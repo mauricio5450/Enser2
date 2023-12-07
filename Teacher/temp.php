@@ -1,7 +1,7 @@
-
 <?php
     include("authconnection.php");
     require_once ('../connection.php');
+    $professor = intval($_SESSION['instructor_id']);
     $sql = "SELECT *
             FROM teachers";
     $all_classes = $conn->query($sql);
@@ -20,7 +20,7 @@
         <nav class="navbar navbar-expand-sm navbar">
             <div class="container-xxl">
               <!-- Logo -->
-                <a class="navbar-brand" href=" ">
+                <a class="navbar-brand" href="TeacherDash.php">
                     <img src="../images/enser logo.png" alt="Logo" style="width: 50px" style="height: 50px">
                 </a>
                 <h1 class="brand-text">nser</h1>
@@ -44,38 +44,38 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Student Dashboard</h2>
+                <h2>Teacher Dashboard</h2>
             </div>
         </div>
 <!--The end of the navbar-->
 <!--This is the beggining of the sidebar-->
         <div>
-        <!--Things to the right of the navbar-->
+        <!--Things to the right of the navbar--> 
             <div class="content-to-right">
-            <div class="container">
-                    <p>Hi <?php echo $_SESSION['username']?></p>
-                    <input type="text" id ="fromUser" value=<?php echo $_SESSION["username"];?> hidden />
+                <div class="container">
+                    <p>Hi <?php echo $_SESSION['username'],$_SESSION['instructor_id']?></p>
+                    <input type="text" id ="fromUser" value=<?php echo $_SESSION["instructor_id"];?> hidden />
                 </div>
                 <div class="people">
                     <p>Send message to: </p>
                     <ul>
                         <?php
                             while($row=mysqli_fetch_assoc($all_classes)){
-                                echo'<li><a href="?toUser=' .$row["teacher_username"].'">'.$row["teacher_username"].' (Teacher)</a></li>';
+                                echo'<li><a href="?toUser=' .$row["id"].'">'.$row["teacher_username"].' (Teacher)</a></li>';
                             }
 
                             $sql = "SELECT * FROM students";
                             $all_classes = $conn->query($sql);
 
                             while($row=mysqli_fetch_assoc($all_classes)){
-                                echo'<li><a href="?toUser=' .$row["student_username"].'">'.$row["student_username"].' (Student)</a></li>';
+                                echo'<li><a href="?toUser=' .$row["id"].'">'.$row["student_username"].' (Student)</a></li>';
                             }
 
                             $sql = "SELECT * FROM stakeholders";
                             $all_classes = $conn->query($sql);
 
                             while($row=mysqli_fetch_assoc($all_classes)){
-                                echo'<li><a href="?toUser=' .$row["stakeholder_username"].'">'.$row["stakeholder_username"].' (Stakeholder)</a></li>';
+                                echo'<li><a href="?toUser=' .$row["id"].'">'.$row["stakeholder_username"].' (Stakeholder)</a></li>';
                             }
                         ?>
                     </ul>
@@ -88,24 +88,16 @@
                                 <h4>
                                     <?php
                                         if(isset($_GET["toUser"])){
-                                            $Teacher_Username = "SELECT * FROM teachers WHERE teacher_username = '".$_GET["toUser"]."'                
-                                            UNION
-                                            SELECT * FROM `stakeholders` WHERE stakeholder_username='".$_GET["toUser"]."' 
-                                            UNION
-                                            SELECT * FROM `students` WHERE student_username='".$_GET["toUser"]."' ";
+                                            $Teacher_Username = "SELECT * FROM teachers WHERE id = '".$_GET["toUser"]."' ";
                                             $TC = $conn->query($Teacher_Username); 
                                             $uName = mysqli_fetch_assoc($TC);
                                             echo '<input type="text" value='.$_GET["toUser"].' id="toUser" hidden/>';
                                             echo $uName["teacher_username"];
                                         }else{
-                                            $Teacher_Username = "SELECT * FROM teachers                 
-                                            UNION
-                                            SELECT * FROM `stakeholders`
-                                            UNION
-                                            SELECT * FROM `students` ";
+                                            $Teacher_Username = "SELECT * FROM teachers";
                                             $TC = $conn->query($Teacher_Username); 
                                             $uName = mysqli_fetch_assoc($TC);
-                                            $_SESSION["toUser"] = $uName["teacher_username"];
+                                            $_SESSION["toUser"] = $uName["id"];
                                             echo '<input type="text" value='.$_SESSION["toUser"].' id="toUser" hidden/>';
                                             echo $uName["teacher_username"];
                                         }
@@ -115,14 +107,14 @@
                             <div class="modal-body" id="msgBody" style="height:400px; width:1000px; overflow-y: scroll; overflow-x:hidden;">
                                 <?php
                                     if(isset($_GET["toUser"])){
-                                        $chats = "SELECT * FROM messages WHERE(FromUser = '".$_SESSION["username"]."' AND ToUser = '".$_GET["toUser"]."') OR (FromUser='".$_GET["toUser"]."' AND ToUser = '".$_SESSION["username"]."')";
+                                        $chats = "SELECT * FROM messages WHERE(FromUser = '".$_SESSION["instructor_id"]."' AND ToUser = '".$_GET["toUser"]."') OR (FromUser='".$_GET["toUser"]."' AND ToUser = '".$_SESSION["instructor_id"]."')";
                                         $messages = $conn->query($chats); 
                                         $chat = mysqli_fetch_assoc($messages);
                                     }else{
-                                        $chats = "SELECT * FROM messages WHERE(FromUser = '".$_SESSION["username"]."' AND ToUser = '".$_SESSION["toUser"]."') OR (FromUser='".$_SESSION["username"]."' AND ToUser = '".$_SESSION["toUser"]."')";
+                                        $chats = "SELECT * FROM messages WHERE(FromUser = '".$_SESSION["instructor_id"]."' AND ToUser = '".$_SESSION["toUser"]."') OR (FromUser='".$_SESSION["instructor_id"]."' AND ToUser = '".$_SESSION["toUser"]."')";
                                         $messages = $conn->query($chats); 
                                         while($chat = mysqli_fetch_assoc($messages)){
-                                            if($chat["FromUser"]==$_SESSION["username"]){
+                                            if($chat["FromUser"]==$_SESSION["instructor_id"]){
                                                 echo"<div style='text-align:right;'>
                                                     <p style='background-color:lightblue; word-wrap:break-word;display:inline-block; padding:5px; border-radius:10px; max width:70%;'>
                                                         ".$chat["Message"]."
@@ -149,56 +141,49 @@
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="StudentDash.php">
+                <a href="TeacherDash.php">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
                     <p>Dashboard</p>
                 </a>
-                <a href="#">
+                <a href="TeacherStudents.php">
                     <span class="material-symbols-outlined">
                         person
                     </span>
-                    <p>User</p> 
+                    <p>Students</p> 
                 </a>
-                <a href="StudentCourses.php">
+                <a href="TeacherCourses.php">
                     <span class="material-symbols-outlined">
                         school
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="StudentInstructors.php">
+                <a href="TeacherProject.php">
                     <span class="material-symbols-outlined">
-                        design_services
+                        deployed_code
                     </span>
-                        <p>Instructors</p> 
+                    <p>Projects</p> 
                 </a>
-                <a href="StudentMessages.php" class="active">
+                <a href="#">
+                    <span class="material-symbols-outlined">
+                        volunteer_activism
+                    </span>
+                    <p>Stakeholders</p> 
+                </a>
+                <a href="Teacher_Message.php" class="active">
                     <span class="material-symbols-outlined">
                         chat
                     </span>
                     <p>Message</p> 
                 </a>
-
-<!-- TEMP TAKEOUT
-                <a href="#">
-                    <span class="material-symbols-outlined">
-                        logout
-                    </span>
-                    <p>Logout</p> 
-                </a>
-            </div>
--->
-
-        </div>
-        <!--This is the end of the sidebar--> 
-           
+        </div>           
     </body>
     <script type="text/javascript">
         $(document).ready(function(){
             $("#send").on("click",function(){
                 $.ajax({
-                    url:"../Teacher/insertMessage.php",
+                    url:"insertMessage.php",
                     method:"POST",
                     data:{
                         fromUser: $("#fromUser").val(),
@@ -214,7 +199,7 @@
             });
             setInterval(function(){
                 $.ajax({
-                    url:"../Teacher/realTimeChat.php",
+                    url:"realTimeChat.php",
                     method:"POST", 
                     data:{
                         fromUser:$("#fromUser").val(),

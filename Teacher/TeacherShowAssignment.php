@@ -1,12 +1,14 @@
+
 <?php
-
+    include("authconnection.php");
     require_once ('../connection.php');
+    $selectedassignment = intval($_SESSION['assignment_id']);
+
     $sql = "SELECT *
-            FROM students";
+            FROM assignments
+            WHERE assignments.assignment_id = $selectedassignment";
     $all_classes = $conn->query($sql);
-
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -45,101 +47,82 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Students</h2>
             </div>
         </div>
 <!--The end of the navbar-->
 <!--This is the beggining of the sidebar-->
-        <div>
-        <!--Things to the right of the navbar-->
+        <!--Things to the right of the navbar--> 
             <div class="content-to-right">
-
-            <table class="table" class="custom-table">
-                <thead>
-                    <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>State</th>
-                        <th>City/Town</th>
-                        <th>Sex</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-                    while($row = mysqli_fetch_assoc($all_classes)){
-                ?>
-                <tr>
-                    <td><?php echo $row["student_first"] ?></td>
-                    <td><?php echo $row["student_last"] ?></td>
-                    <td><?php echo $row["student_email"] ?></td>
-                    <td><?php echo $row["student_state"] ?></td>
-                    <td><?php echo $row["student_town"] ?></td>
-                    <td><?php echo $row["student_sex"] ?></td>
-                </tr>
-                <?php
-                    }
-                ?>
-                </tbody>
-            </table>
+                <?php $row = mysqli_fetch_assoc($all_classes) ?>
+                <h1><?php echo $row["a_title"] ?></h1>
+                <h2><?php echo $row["a_points"] ?></h2>
+                <h2><?php echo $row["a_date"] ?></h2>
+                <h2><?php echo $row["a_requirements"] ?></h2>
 
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="StakeholderDash.php">
+                <a href="TeacherDash.php">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
                     <p>Dashboard</p>
                 </a>
-                <a href="StakeholderStudents.php" class="active">
+                <a href="TeacherStudents.php">
                     <span class="material-symbols-outlined">
                         person
                     </span>
                     <p>Students</p> 
                 </a>
-                <a href="StakeholderCourses.php">
+                <a href="TeacherCourses.php">
                     <span class="material-symbols-outlined">
                         school
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="StakeholderProject.php">
+                <a href="TeacherProject.php">
                     <span class="material-symbols-outlined">
                         deployed_code
                     </span>
                     <p>Projects</p> 
                 </a>
-                <a href="StakeholderInstructors.php">
-                    <span class="material-symbols-outlined">
-                        design_services
-                    </span>
-                        <p>Instructors</p> 
-                </a>
-                <a href="StakeholderStake.php">
+                <a href="TeacherStakeholders.php">
                     <span class="material-symbols-outlined">
                         volunteer_activism
                     </span>
                     <p>Stakeholders</p> 
                 </a>
-                <a href="StakeholderMessages.php">
+
+                <a href ="TeacherDisplaySyllabus.php">
+                    <span class="material-symbols-outlined">
+                        summarize
+                    </span>
+                    <p>Syllabus</p>
+                </a>
+                <a href ="TeacherSyllabus.php">
+                    <span class="material-symbols-outlined">
+                        note_add
+                    </span>
+                    <p>Add Syllabus</p>
+                </a>
+                <a href ="TeacherAssignment.php">
+                    <span class="material-symbols-outlined">
+                        assignment
+                    </span>
+                    <p>Assingmnets</p>
+                </a>
+                <a href ="TeacherAssignmentCreate.php">
+                    <span class="material-symbols-outlined">
+                        assignment_add
+                    </span>
+                    <p>Create Assingmnet</p>
+                </a>
+                <a href="Teacher_Message.php">
                     <span class="material-symbols-outlined">
                         chat
                     </span>
                     <p>Message</p> 
                 </a>
-<!-- TEMP TAKEOUT
-                <a href="#">
-                    <span class="material-symbols-outlined">
-                        logout
-                    </span>
-                    <p>Logout</p> 
-                </a>
-            </div>
--->
-
-        </div>
-        <!--This is the end of the sidebar--> 
-           
+        </div>           
     </body>
 </html>

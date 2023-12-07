@@ -1,12 +1,16 @@
 <?php
-
+    include("authconnection.php");
     require_once ('../connection.php');
+
+    $selectedClass = intval($_SESSION['selected_class']);
+
     $sql = "SELECT *
-            FROM students";
-    $all_classes = $conn->query($sql);
+            FROM assignments
+            WHERE assignments.class_id = $selectedClass";
+    $all_assignments = $conn->query($sql);
+
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -45,7 +49,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Students</h2>
+                <h2>Student Dashboard</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -53,81 +57,103 @@
         <div>
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
-
-            <table class="table" class="custom-table">
-                <thead>
+                <div class="container">
+                <table class="table" class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Assignment Name</th>
+                            <th>Due Date</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        while($row = mysqli_fetch_assoc($all_assignments)){
+                    ?>
                     <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>State</th>
-                        <th>City/Town</th>
-                        <th>Sex</th>
+                        <td><?php echo $row["a_title"] ?></td>
+                        <td><?php echo $row["a_date"] ?></td>
+                        <td><a class="btn btn-primary" onclick= "selectClassAndRedirect(<?php echo $row['assignment_id'] ?>)">View Assignment</a></td>
                     </tr>
-                </thead>
-                <tbody>
-                <?php
-                    while($row = mysqli_fetch_assoc($all_classes)){
-                ?>
-                <tr>
-                    <td><?php echo $row["student_first"] ?></td>
-                    <td><?php echo $row["student_last"] ?></td>
-                    <td><?php echo $row["student_email"] ?></td>
-                    <td><?php echo $row["student_state"] ?></td>
-                    <td><?php echo $row["student_town"] ?></td>
-                    <td><?php echo $row["student_sex"] ?></td>
-                </tr>
-                <?php
-                    }
-                ?>
-                </tbody>
-            </table>
-
+                    <?php
+                        }
+                    ?>
+                    <script>
+                        function selectClassAndRedirect(classID) {
+                        // Use AJAX to send the selected class ID to the server
+                        // Update the session variable without reloading the page
+                        let xhr = new XMLHttpRequest();
+                        xhr.open('GET', 'authconnection.php?assignment_id=' + classID, true);
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                // Redirect to the specified destination
+                                window.location.href = 'StudentShowAssignment.php';
+                            }
+                        };
+                        xhr.send();
+                        }
+                    </script>
+                    </tbody>
+                </table>
+                </div>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="StakeholderDash.php">
+                <a href="StudentDash.php">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
                     <p>Dashboard</p>
                 </a>
-                <a href="StakeholderStudents.php" class="active">
+                <a href="#">
                     <span class="material-symbols-outlined">
                         person
                     </span>
-                    <p>Students</p> 
+                    <p>User</p> 
                 </a>
-                <a href="StakeholderCourses.php">
+                <a href="StudentCourses.php">
                     <span class="material-symbols-outlined">
                         school
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="StakeholderProject.php">
-                    <span class="material-symbols-outlined">
-                        deployed_code
-                    </span>
-                    <p>Projects</p> 
-                </a>
-                <a href="StakeholderInstructors.php">
+                <a href="StudentInstructors.php">
                     <span class="material-symbols-outlined">
                         design_services
                     </span>
                         <p>Instructors</p> 
                 </a>
-                <a href="StakeholderStake.php">
+                <a href="Studenjobs.php">
                     <span class="material-symbols-outlined">
-                        volunteer_activism
+                        history
                     </span>
-                    <p>Stakeholders</p> 
+                    <p>Jobs</p> 
                 </a>
-                <a href="StakeholderMessages.php">
+                <a href="#">
+                    <span class="material-symbols-outlined">
+                        upload_file
+                    </span>
+                    <p>Reflections</p> 
+                </a>
+                <a href="StudentMessages.php">
                     <span class="material-symbols-outlined">
                         chat
                     </span>
                     <p>Message</p> 
                 </a>
+                <a href ="StudentSyllabus.php">
+                    <span class="material-symbols-outlined">
+                        summarize
+                    </span>
+                    <p>Syllabus</p>
+                </a>
+                <a href ="StudentAssignments.php" class="active">
+                    <span class="material-symbols-outlined">
+                        assignment
+                    </span>
+                    <p>Assingmnets</p>
+                </a>
+
 <!-- TEMP TAKEOUT
                 <a href="#">
                     <span class="material-symbols-outlined">

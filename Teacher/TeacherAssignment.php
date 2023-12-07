@@ -72,15 +72,31 @@
                     <tr>
                         <td><?php echo $row["a_title"] ?></td>
                         <td><?php echo $row["a_date"] ?></td>
-                        <td><a href="#">View Course</a></td>
+                        <td><a class="btn btn-primary" onclick= "selectClassAndRedirect(<?php echo $row['assignment_id'] ?>)">View Assignment</a></td>
                     </tr>
                     <?php
                         }
                     ?>
+                    <script>
+                        function selectClassAndRedirect(classID) {
+                        // Use AJAX to send the selected class ID to the server
+                        // Update the session variable without reloading the page
+                        let xhr = new XMLHttpRequest();
+                        xhr.open('GET', 'authconnection.php?assignment_id=' + classID, true);
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                // Redirect to the specified destination
+                                window.location.href = 'TeacherShowAssignment.php';
+                            }
+                        };
+                        xhr.send();
+                        }
+                    </script>
                     </tbody>
                 </table>
             </div>
         <!--The end of the things to the right nabar-->
+        <div class="sidebar">
         <div class="sidebar">
                 <a href="TeacherDash.php">
                     <span class="material-symbols-outlined">

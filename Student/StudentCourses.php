@@ -1,9 +1,20 @@
 <?php
     include("authconnection.php");
     require_once ('../connection.php');
-    $sql = "SELECT *
-            FROM classes";
+    $Sid = $_SESSION["student_id"];
+    $sql = "SELECT classes.*
+    FROM classes
+    LEFT JOIN enrollment ON classes.id = enrollment.classid AND enrollment.studentid = $Sid
+    WHERE enrollment.classid IS NULL";
     $all_classes = $conn->query($sql);
+    
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $enroll = "INSERT INTO enrollment (classid,studentid,enrolled) VALUES ($id, '".$_SESSION['student_id']."' ,1) ";
+        $conn->query($enroll);
+        header("Location: StudentCourses.php");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +63,8 @@
         <div>
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+
             <table class="table" class="custom-table">
                 <thead>
                     <tr>
@@ -64,7 +77,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
 
                 <?php
                     while($row = mysqli_fetch_assoc($all_classes)){
@@ -76,27 +89,8 @@
                     <td><?php echo $row["Location"] ?></td>
                     <td><?php echo $row["skills_learned"] ?></td>
                     <td>
-                    <a class="btn btn-primary" onclick= "Enroll(<?php echo $row['id'] ?>)">Enroll</a>
+                    <a class="btn btn-primary" href='StudentCourses.php?id=<?php echo $row["id"]; ?>'>Enroll</a>
                     </td>
-                    <script>
-                        function Enroll(classId) {
-                            var studentId = <?php echo $_SESSION('student_id'); ?>; // Replace with the actual way you get the student ID
-
-                            $.ajax({
-                                type: 'POST',
-                                url: 'enroll.php', // Create a new PHP file (enroll.php) to handle enrollments
-                                data: { classId: classId, studentId: studentId },
-                                success: function(response) {
-                                    // Handle the response, e.g., show a success message or update the UI
-                                    console.log(response);
-                                },
-                                error: function(error) {
-                                    // Handle errors, e.g., show an error message
-                                    console.error(error.responseText);
-                                }
-                            });
-                        }
-                    </script>
                 </tr>
                 <?php
                     }
@@ -107,7 +101,7 @@
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="StudentDash.php">
+            <a href="StudentDash.php">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
@@ -131,11 +125,11 @@
                     </span>
                         <p>Instructors</p> 
                 </a>
-                <a href="StudentPast.php">
+                <a href="Studenjobs.php">
                     <span class="material-symbols-outlined">
                         history
                     </span>
-                    <p>Past Courses</p> 
+                    <p>Jobs</p> 
                 </a>
                 <a href="StudentMessages.php">
                     <span class="material-symbols-outlined">
@@ -157,4 +151,14 @@
         <!--This is the end of the sidebar--> 
            
     </body>
+    <script>
+        $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        });
+    </script>
 </html>

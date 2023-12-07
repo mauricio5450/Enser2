@@ -88,12 +88,7 @@
                     </span>
                     <p>Dashboard</p>
                 </a>
-                <a href="TeacherStudents.php">
-                    <span class="material-symbols-outlined">
-                        person
-                    </span>
-                    <p>Students</p> 
-                </a>
+
                 <a href="TeacherCourses.php" class="active">
                     <span class="material-symbols-outlined">
                         school

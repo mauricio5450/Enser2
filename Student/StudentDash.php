@@ -1,3 +1,20 @@
+<?php
+    include("authconnection.php");
+    require_once ('../connection.php');
+    $Sid = $_SESSION["student_id"];
+    $sql = "SELECT classes.*
+    FROM classes
+    INNER JOIN enrollment ON classes.id = enrollment.classid AND enrollment.studentid = $Sid";
+    $all_classes = $conn->query($sql);
+
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $Delete = "DELETE FROM enrollment WHERE classid = $id";
+        $conn->query($Delete);
+    }
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,60 +60,42 @@
         <div>
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
-
                 <div class="container">
                     <div class="row">
+                        <?php
+                            while($row = mysqli_fetch_assoc($all_classes)){
+                        ?>
                         <div class="col-sm-6">
                             <div class="card" style="width:400px">
-                            <img class="card-img-top" src="../images/csclass.jpg" alt="Card image">
+                            <img class="card-img-top" src="<?php echo $row["course_image"] ?>" alt="Card image">
                                 <div class="card-body">
-                                    <h4 class="card-title">CS 120</h4>
-                                    <p class="card-text">Professor: John Doe</p>
-                                    <a href="CS120.php" class="btn btn-primary stretched-link">See class</a>
+                                    <h4 class="card-title"><?php echo $row["course_name"] ?></h4>
+                                    <p class="card-text">Professor: <?php echo $row["Instructor"] ?></p>
+                                    <a  onclick= "selectClassAndRedirect(<?php echo $row['id'] ?>)" class="btn btn-primary">See class</a>
+                                    <a class="btn btn-danger" href='StudentDash.php?id=<?php echo $row["id"]; ?>'>Drop</a>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="../images/csclass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">CS 240</h4>
-                                    <p class="card-text">Professor: Jane Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
-
-                <div></div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                            <img class="card-img-top" src="../images/mathclass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">Math 270</h4>
-                                    <p class="card-text">Professor: John Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="../images/ececlass.jpg" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">ECE 320</h4>
-                                    <p class="card-text">Professor: Jane Doe</p>
-                                    <a href="#" class="btn btn-primary stretched-link">See class</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <script>
+                    function selectClassAndRedirect(classID) {
+                        // Use AJAX to send the selected class ID to the server
+                        // Update the session variable without reloading the page
+                        let xhr = new XMLHttpRequest();
+                        xhr.open('GET', 'authconnection.php?class_id=' + classID, true);
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                // Redirect to the specified destination
+                                window.location.href = 'StudentClass.php';
+                            }
+                        };
+                        xhr.send();
+                    }
+                </script>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
@@ -130,12 +129,7 @@
                     </span>
                     <p>Jobs</p> 
                 </a>
-                <a href="#">
-                    <span class="material-symbols-outlined">
-                        upload_file
-                    </span>
-                    <p>Reflections</p> 
-                </a>
+
                 <a href="StudentMessages.php">
                     <span class="material-symbols-outlined">
                         chat

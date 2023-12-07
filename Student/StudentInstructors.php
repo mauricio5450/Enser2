@@ -55,16 +55,21 @@
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
             <table class="table" class="custom-table">
-                <?php
-                    while($row = mysqli_fetch_assoc($all_teachers)){
-                ?>
+
                 <thead>
                     <tr>
-                        <th>Names</th>
+                        <th>Name</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <td><?php echo $row["teacher_username"] ?></td>
+                <?php
+                    while($row = mysqli_fetch_assoc($all_teachers)){
+                ?>
+                    <tr>
+                        <td><?php echo $row["teacher_username"] ?></td>
+                        <td><?php echo $row["teacher_email"] ?></td>
+                    </tr>
                 </tbody>
             </table>
             <?php
@@ -97,12 +102,7 @@
                     </span>
                         <p>Instructors</p> 
                 </a>
-                <a href="StudentPast.php">
-                    <span class="material-symbols-outlined">
-                        history
-                    </span>
-                    <p>Past Courses</p> 
-                </a>
+
                 <a href="StudentMessages.php">
                     <span class="material-symbols-outlined">
                         chat

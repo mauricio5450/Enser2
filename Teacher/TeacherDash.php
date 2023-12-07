@@ -6,6 +6,12 @@
             FROM classes
             WHERE classes.instructor_id = $professor";
     $all_classes = $conn->query($sql);
+
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $Delete = "DELETE FROM classes WHERE id = $id";
+        $conn->query($Delete);
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,12 +71,7 @@
                                     <h4 class="card-title"><?php echo $row["course_name"] ?></h4>
                                     <p class="card-text">Professor: <?php echo $row["Instructor"] ?></p>
                                     <a class="btn btn-primary" onclick= "selectClassAndRedirect(<?php echo $row['id'] ?>)">See class</a>
-                                    
-                                    <form action = "delete.php" method="post">
-                                        <input type="hidden" name="id" value="<?php echo $row["id"] ?>">
-                                        <input type="submit" name ="delete" class="btn btn-danger" value="Delete">
-                                    </form>
-
+                                    <a class="btn btn-danger" href='TeacherDash.php?id=<?php echo $row["id"]; ?>'>Delete</a>
                                 </div>
                             </div>
                         </div>
@@ -102,12 +103,6 @@
                         dashboard
                     </span>
                     <p>Dashboard</p>
-                </a>
-                <a href="TeacherStudents.php">
-                    <span class="material-symbols-outlined">
-                        person
-                    </span>
-                    <p>Students</p> 
                 </a>
                 <a href="TeacherCourses.php">
                     <span class="material-symbols-outlined">

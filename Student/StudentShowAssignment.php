@@ -1,12 +1,16 @@
 <?php
-
+    include("authconnection.php");
     require_once ('../connection.php');
+
+    $selectedClass = intval($_SESSION['selected_class']);
+
     $sql = "SELECT *
-            FROM students";
+            FROM syllabus
+            WHERE syllabus.class_id = $selectedClass";
     $all_classes = $conn->query($sql);
 
-?>
 
+?>
 
 <!DOCTYPE html>
 <html>
@@ -45,7 +49,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Students</h2>
+                <h2>Student Dashboard</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -53,81 +57,82 @@
         <div>
         <!--Things to the right of the navbar-->
             <div class="content-to-right">
-
-            <table class="table" class="custom-table">
-                <thead>
-                    <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>State</th>
-                        <th>City/Town</th>
-                        <th>Sex</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-                    while($row = mysqli_fetch_assoc($all_classes)){
-                ?>
-                <tr>
-                    <td><?php echo $row["student_first"] ?></td>
-                    <td><?php echo $row["student_last"] ?></td>
-                    <td><?php echo $row["student_email"] ?></td>
-                    <td><?php echo $row["student_state"] ?></td>
-                    <td><?php echo $row["student_town"] ?></td>
-                    <td><?php echo $row["student_sex"] ?></td>
-                </tr>
-                <?php
-                    }
-                ?>
-                </tbody>
-            </table>
-
+                <div class="container">
+                    <?php
+                        $row = mysqli_fetch_assoc($all_classes)
+                    ?>    
+                    <h1><?php echo $row["class_name"] ?></h1>
+                    <div class="Description">
+                        <h4>Class Description: </h2>
+                        <p><?php echo $row["class_desc"] ?></p>
+                    </div>
+                    <div class="Dates">
+                        <h4>Course time: </h4>
+                        <p><?php echo $row["class_start_date"] ?> - <?php echo $row["class_enddate"] ?></p>
+                    </div>
+                    <div class="Grading">
+                        <h4>Grading Scheme: </h4>
+                        <p><?php echo $row["Grading Scheme"] ?></p>
+                    </div>
+                </div>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="StakeholderDash.php">
+                <a href="StudentDash.php">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
                     <p>Dashboard</p>
                 </a>
-                <a href="StakeholderStudents.php" class="active">
+                <a href="#">
                     <span class="material-symbols-outlined">
                         person
                     </span>
-                    <p>Students</p> 
+                    <p>User</p> 
                 </a>
-                <a href="StakeholderCourses.php">
+                <a href="StudentCourses.php">
                     <span class="material-symbols-outlined">
                         school
                     </span>
                     <p>Courses</p> 
                 </a>
-                <a href="StakeholderProject.php">
-                    <span class="material-symbols-outlined">
-                        deployed_code
-                    </span>
-                    <p>Projects</p> 
-                </a>
-                <a href="StakeholderInstructors.php">
+                <a href="StudentInstructors.php">
                     <span class="material-symbols-outlined">
                         design_services
                     </span>
                         <p>Instructors</p> 
                 </a>
-                <a href="StakeholderStake.php">
+                <a href="Studenjobs.php">
                     <span class="material-symbols-outlined">
-                        volunteer_activism
+                        history
                     </span>
-                    <p>Stakeholders</p> 
+                    <p>Jobs</p> 
                 </a>
-                <a href="StakeholderMessages.php">
+                <a href="#">
+                    <span class="material-symbols-outlined">
+                        upload_file
+                    </span>
+                    <p>Reflections</p> 
+                </a>
+                <a href="StudentMessages.php">
                     <span class="material-symbols-outlined">
                         chat
                     </span>
                     <p>Message</p> 
                 </a>
+                <a href ="StudentSyllabus.php">
+                    <span class="material-symbols-outlined">
+                        summarize
+                    </span>
+                    <p>Syllabus</p>
+                </a>
+                <a href ="StudentAssignments.php">
+                    <span class="material-symbols-outlined">
+                        assignment
+                    </span>
+                    <p>Assingmnets</p>
+                </a>
+
 <!-- TEMP TAKEOUT
                 <a href="#">
                     <span class="material-symbols-outlined">

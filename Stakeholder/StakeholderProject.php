@@ -59,7 +59,6 @@
                     <tr>
                         <th>Project</th>
                         <th>Shareholder</th>
-                        <th>Email</th>
                         <th>Skills to learn</th>
                     </tr>
                 </thead>
@@ -70,7 +69,6 @@
                 <tr>
                     <td><?php echo $row["project_name"] ?></td>
                     <td><?php echo $row["project_stakeholder"] ?></td>
-                    <td>N/A</td>
                     <td><?php echo $row["project_skills"] ?></td>
                 </tr>
                 <?php

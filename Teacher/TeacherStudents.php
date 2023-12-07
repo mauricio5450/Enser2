@@ -1,3 +1,24 @@
+<?php
+require_once('../connection.php');
+include("authconnection.php");
+
+$selectedClass = intval($_SESSION['selected_class']);
+
+$sql = "SELECT *
+        FROM classes
+        WHERE classes.id = $selectedClass";
+$all_classes = $conn->query($sql);
+
+$ro = mysqli_fetch_assoc($all_classes);
+
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $Delete = "DELETE FROM enrollment WHERE classid = $id";
+    $conn->query($Delete);
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,6 +63,7 @@
 <!--This is the beggining of the sidebar-->
         <!--Things to the right of the navbar--> 
             <div class="content-to-right">
+            <h1><?php echo $ro["course_name"] ?> Students</h1>
             <table class="table" class="custom-table">
                 <thead>
                     <tr>
@@ -51,43 +73,36 @@
                         <th>State</th>
                         <th>City/Town</th>
                         <th>Sex</th>
-                        <th>Major(Optional)</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php 
+                    $sql2 = "SELECT *
+                    FROM students
+                    INNER JOIN enrollment ON students.id = enrollment.studentid
+                    WHERE enrollment.classid = $selectedClass";
+                    $_getstudents = $conn->query($sql2);
+                    while($row = mysqli_fetch_assoc($_getstudents)){
+                ?>
                 <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                    <td>Montana</td>
-                    <td>Helena</td>
-                    <td>Male</td>
-                    <td>Mechanical Engineer</td>
+                    <td><?php echo $row["student_first"] ?></td>
+                    <td><?php echo $row["student_last"] ?></td>
+                    <td><?php echo $row["student_email"] ?></td>
+                    <td><?php echo $row["student_state"] ?></td>
+                    <td><?php echo $row["student_town"] ?></td>
+                    <td><?php echo $row["student_sex"] ?></td>
+                    <td><a class="btn btn-danger" href='TeacherStudents.php?id=<?php echo $ro["id"]; ?>'>Delete</a></td>
                 </tr>
-                <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
-                    <td>Idaho</td>
-                    <td>Boise</td>
-                    <td>Female</td>
-                    <td>Electrical Engineer</td>
-                </tr>
-                <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
-                    <td>Pennsylvania </td>
-                    <td>Gettysburg</td>
-                    <td>Female</td>
-                    <td>NULL</td>
-                </tr>
+                <?php
+                    }
+                ?>
                 </tbody>
             </table>
             </div>
         <!--The end of the things to the right nabar-->
             <div class="sidebar">
-                <a href="TeacherDash.php">
+            <a href="TeacherDash.php">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
@@ -116,6 +131,31 @@
                         volunteer_activism
                     </span>
                     <p>Stakeholders</p> 
+                </a>
+
+                <a href ="TeacherDisplaySyllabus.php">
+                    <span class="material-symbols-outlined">
+                        summarize
+                    </span>
+                    <p>Syllabus</p>
+                </a>
+                <a href ="TeacherSyllabus.php">
+                    <span class="material-symbols-outlined">
+                        note_add
+                    </span>
+                    <p>Add Syllabus</p>
+                </a>
+                <a href ="TeacherAssignment.php">
+                    <span class="material-symbols-outlined">
+                        assignment
+                    </span>
+                    <p>Assingmnets</p>
+                </a>
+                <a href ="TeacherAssignmentCreate.php">
+                    <span class="material-symbols-outlined">
+                        assignment_add
+                    </span>
+                    <p>Create Assingmnet</p>
                 </a>
                 <a href="Teacher_Message.php">
                     <span class="material-symbols-outlined">

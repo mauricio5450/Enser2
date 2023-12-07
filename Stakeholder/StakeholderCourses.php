@@ -59,11 +59,6 @@
                         <th>Course</th>
                         <th>Description</th>
                         <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>State</th>
-                        <th>City/Town</th>
-                        <th>Sex</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,11 +69,6 @@
                     <td><?php echo $row["course_name"] ?></td>
                     <td><?php echo $row["course_desc"] ?></td>
                     <td><?php echo $row["Instructor"] ?></td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
                 </tr>
                 <?php
                     }
