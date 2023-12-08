@@ -4,7 +4,7 @@
     include("authconnection.php");
     require_once ('../connection.php');
     $sql = "SELECT *
-            FROM classes";
+            FROM teachers";
     $all_classes = $conn->query($sql);
 
 
@@ -58,11 +58,23 @@
 
                 <table class="table" class="custom-table">
                 <thead>
+                    <tr>
+                        <th>Instructor Username</th>
+                        <th>Instructor first name</th>
+                        <th>Instructor last name</th>
+                        <th>Instructor email</th>
+                    </tr>
+                </thead>
+                <tbody>
                 <?php
                     while($row = mysqli_fetch_assoc($all_classes)){
                 ?>
                 <tr>
-                    <td><?php echo $row["Instructor"] ?></td>
+                    <td><?php echo $row["teacher_username"] ?></td>
+                    <td><?php echo $row["teacher_first"] ?></td>
+                    <td><?php echo $row["teacher_last"] ?></td>
+                    <td><?php echo $row["teacher_email"] ?></td>
+
                 </tr>
                 <?php
                     }

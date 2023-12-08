@@ -47,7 +47,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Student Dashboard</h2>
+                <h2>Reflection</h2>
             </div>
         </div>
 <!--The end of the navbar-->

@@ -49,7 +49,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
-                <h2>Student Dashboard</h2>
+                <h2>Student Classes</h2>
             </div>
         </div>
 <!--The end of the navbar-->
@@ -100,12 +100,7 @@
                     </span>
                         <p>Instructors</p> 
                 </a>
-                <a href="Studenjobs.php">
-                    <span class="material-symbols-outlined">
-                        history
-                    </span>
-                    <p>Jobs</p> 
-                </a>
+
                 <a href="StudentReflections.php">
                     <span class="material-symbols-outlined">
                         upload_file

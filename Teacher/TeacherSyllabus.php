@@ -67,6 +67,7 @@
         </nav>
         <div class="row">
             <div class="col-sm-4 text-left p-4">
+                <h2>Create Syllabus</h2>
             </div>
         </div>
 <!--The end of the navbar-->

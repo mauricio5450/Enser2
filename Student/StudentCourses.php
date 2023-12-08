@@ -125,12 +125,6 @@
                     </span>
                         <p>Instructors</p> 
                 </a>
-                <a href="Studenjobs.php">
-                    <span class="material-symbols-outlined">
-                        history
-                    </span>
-                    <p>Jobs</p> 
-                </a>
                 <a href="StudentMessages.php">
                     <span class="material-symbols-outlined">
                         chat

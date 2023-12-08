@@ -52,6 +52,7 @@
                 $result = mysqli_query($conn, $query);
                 $rows = mysqli_num_rows($result);
                 if ($rows == 1) {
+                    $_SESSION['stakeholder_id'] = $row['id'];
                     $_SESSION['username'] = $username;
                     // Redirect to user dashboard page
                     header("Location: StakeholderDash.php");
